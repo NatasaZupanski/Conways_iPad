@@ -11,7 +11,12 @@ struct ColonyView: View {
     var colony : Colony
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            /*ForEach(colony.aliveCells) {
+                Text("")
+            }*/
+            Text("Testing")
+        }
     }
 }
 
