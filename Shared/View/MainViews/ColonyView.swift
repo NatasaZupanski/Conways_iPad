@@ -12,10 +12,10 @@ struct ColonyView: View {
     
     var body: some View {
         ZStack {
-            /*ForEach(colony.aliveCells) {
-                Text("")
-            }*/
-            Text("Testing")
+            ForEach(0..<colony.livingCells().count) { _ in
+                Text("hi")
+            }
+            //Text("Testing")
         }
     }
 }
