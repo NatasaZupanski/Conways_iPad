@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ColonyView: View {
+    var colony : Colony
+    
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
@@ -15,6 +17,14 @@ struct ColonyView: View {
 
 struct ColonyView_Previews: PreviewProvider {
     static var previews: some View {
-        ColonyView()
+        ColonyView(colony: Colony(size: 60))
+    }
+}
+
+struct CellView : View {
+    let size : Double
+    
+    var body: some View {
+        RoundedRectangle(cornerRadius: CGFloat(size / 10.0))
     }
 }
