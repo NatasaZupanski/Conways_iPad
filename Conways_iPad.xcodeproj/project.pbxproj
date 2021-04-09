@@ -162,9 +162,25 @@
 		04C738FC2620C4EB00A30C50 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				04C738BB2620C41300A30C50 /* ContentView.swift */,
+				04C739012620C5FD00A30C50 /* MainViews */,
+				04C739022620C60E00A30C50 /* SupportViews */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		04C739012620C5FD00A30C50 /* MainViews */ = {
+			isa = PBXGroup;
+			children = (
+				04C738BB2620C41300A30C50 /* ContentView.swift */,
+			);
+			path = MainViews;
+			sourceTree = "<group>";
+		};
+		04C739022620C60E00A30C50 /* SupportViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SupportViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
