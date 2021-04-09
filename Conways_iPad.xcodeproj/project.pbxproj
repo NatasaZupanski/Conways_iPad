@@ -99,7 +99,8 @@
 			isa = PBXGroup;
 			children = (
 				04C738BA2620C41300A30C50 /* Conways_iPadApp.swift */,
-				04C738BB2620C41300A30C50 /* ContentView.swift */,
+				04C738FC2620C4EB00A30C50 /* View */,
+				04C738FB2620C4B700A30C50 /* NonView */,
 				04C738BC2620C41400A30C50 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -149,6 +150,21 @@
 				04C738E22620C41400A30C50 /* Info.plist */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		04C738FB2620C4B700A30C50 /* NonView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NonView;
+			sourceTree = "<group>";
+		};
+		04C738FC2620C4EB00A30C50 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04C738BB2620C41300A30C50 /* ContentView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
