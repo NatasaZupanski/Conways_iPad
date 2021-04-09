@@ -17,6 +17,9 @@
 		04C738E82620C41400A30C50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04C738BC2620C41400A30C50 /* Assets.xcassets */; };
 		04C739082620CB2A00A30C50 /* ColonyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C739072620CB2A00A30C50 /* ColonyView.swift */; };
 		04C7390D2620CB2C00A30C50 /* ColonyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C739072620CB2A00A30C50 /* ColonyView.swift */; };
+		96E370E42620CC8E00F9A8E7 /* Colony.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E370E32620CC8E00F9A8E7 /* Colony.swift */; };
+		96E370EB2620CD0100F9A8E7 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E370EA2620CD0100F9A8E7 /* Coordinate.swift */; };
+		96E370F52620CD5E00F9A8E7 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E370F42620CD5E00F9A8E7 /* ListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +55,9 @@
 		04C738E02620C41400A30C50 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		04C738E22620C41400A30C50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04C739072620CB2A00A30C50 /* ColonyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColonyView.swift; sourceTree = "<group>"; };
+		96E370E32620CC8E00F9A8E7 /* Colony.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colony.swift; sourceTree = "<group>"; };
+		96E370EA2620CD0100F9A8E7 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		96E370F42620CD5E00F9A8E7 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +109,7 @@
 			children = (
 				04C738BA2620C41300A30C50 /* Conways_iPadApp.swift */,
 				04C738FC2620C4EB00A30C50 /* View */,
-				04C738FB2620C4B700A30C50 /* NonView */,
+				96E370E92620CCB000F9A8E7 /* NotView */,
 				04C738BC2620C41400A30C50 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -155,18 +161,10 @@
 			path = "Tests macOS";
 			sourceTree = "<group>";
 		};
-		04C738FB2620C4B700A30C50 /* NonView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = NonView;
-			sourceTree = "<group>";
-		};
 		04C738FC2620C4EB00A30C50 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				04C739012620C5FD00A30C50 /* MainViews */,
-				04C739022620C60E00A30C50 /* SupportViews */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -176,15 +174,18 @@
 			children = (
 				04C739072620CB2A00A30C50 /* ColonyView.swift */,
 				04C738BB2620C41300A30C50 /* ContentView.swift */,
+				96E370F42620CD5E00F9A8E7 /* ListView.swift */,
 			);
 			path = MainViews;
 			sourceTree = "<group>";
 		};
-		04C739022620C60E00A30C50 /* SupportViews */ = {
+		96E370E92620CCB000F9A8E7 /* NotView */ = {
 			isa = PBXGroup;
 			children = (
+				96E370E32620CC8E00F9A8E7 /* Colony.swift */,
+				96E370EA2620CD0100F9A8E7 /* Coordinate.swift */,
 			);
-			path = SupportViews;
+			path = NotView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,9 +345,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96E370E42620CC8E00F9A8E7 /* Colony.swift in Sources */,
 				04C738E52620C41400A30C50 /* ContentView.swift in Sources */,
+				96E370F52620CD5E00F9A8E7 /* ListView.swift in Sources */,
 				04C738E32620C41400A30C50 /* Conways_iPadApp.swift in Sources */,
 				04C739082620CB2A00A30C50 /* ColonyView.swift in Sources */,
+				96E370EB2620CD0100F9A8E7 /* Coordinate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
