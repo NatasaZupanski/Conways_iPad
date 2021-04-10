@@ -7,9 +7,12 @@
 
 import Foundation
 
-struct Colony : CustomStringConvertible {
+struct Colony : CustomStringConvertible, Identifiable {
 //    private (set) var name: String
-    private (set) var generationNumber = 0
+    //private (set) var generationNumber = 0
+    let id = UUID()
+    var name = "Unnamed Colony"
+    var generationNumber = 0
 
     ///Length of edge of square colony
     private var size:Int;
