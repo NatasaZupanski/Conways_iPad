@@ -16,7 +16,7 @@ struct ColonyView: View {
         GeometryReader { geometry in
             ZStack {
                 ForEach(0..<colony.livingCells().count) { index in
-                    CellView(size: Double(geometry.size.height)/60.0)
+                    CellView(size: (Double(geometry.size.height)/60.0))
                         .offset(x: CGFloat(Double(colony.livingCells()[index].col)*Double(geometry.size.height)/(60.0)),
                                 y: CGFloat(Double( colony.livingCells()[index].row)*Double(geometry.size.height)/(60.0)))
                 }
@@ -30,7 +30,12 @@ struct ColonyView: View {
 
 struct ColonyView_Previews: PreviewProvider {
     static var previews: some View {
-        ColonyView(colony: Colony(size: 60))//, name: "Unnamed Colony", generationNumber: 2)
+        ColonyView(colony: {
+            var colony = Colony(size: 60)
+            colony.setCellAlive(row: 1, col: 1)
+            colony.setCellAlive(row: 2, col: 2)
+            return colony
+        }())//colony: Colony(size: 60))//, name: "Unnamed Colony", generationNumber: 2)
     }
 }
 
@@ -39,7 +44,8 @@ struct CellView : View {
     //let alive : Bool
     
     var body: some View {
-        RoundedRectangle(cornerRadius: CGFloat(size / 10.0))
+        RoundedRectangle(cornerRadius: CGFloat(size / 5.0))
+            .frame(width: CGFloat(size), height: CGFloat(size))
             .foregroundColor(.blue)
     }
 }
