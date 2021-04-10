@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ColonyView: View {
-    var colony : Colony
+    @State var colony : Colony
     //let name : String
     //var generationNumber : Int
     
@@ -19,6 +19,9 @@ struct ColonyView: View {
                     CellView(size: (Double(geometry.size.height)/60.0))
                         .offset(x: CGFloat(Double(colony.livingCells()[index].col)*Double(geometry.size.height)/(60.0)),
                                 y: CGFloat(Double( colony.livingCells()[index].row)*Double(geometry.size.height)/(60.0)))
+                        .onTapGesture {
+                            colony.setCellDead(row: colony.livingCells()[index].row, col: colony.livingCells()[index].col)
+                        }
                 }
                 //Text("Testing")
             }
