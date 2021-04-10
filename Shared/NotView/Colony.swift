@@ -18,8 +18,8 @@ struct Colony : CustomStringConvertible, Identifiable {
     private var size:Int;
 
     ///A set of all alive cells.
-    private var aliveCells:Set<Coordinate>;
-    
+    //private var aliveCells:Set<Coordinate>;
+    var aliveCells: Set<Coordinate>
     ///Reference for evolve()
 //    private var refSet:Set<Coordinate>;
 

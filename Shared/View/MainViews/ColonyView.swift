@@ -9,16 +9,24 @@ import SwiftUI
 
 struct ColonyView: View {
     @State var colony : Colony
+    var cells : [Coordinate] {
+        return colony.livingCells()
+    }
     //let name : String
     //var generationNumber : Int
+    
+    //func offsetX()
     
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                ForEach(0..<colony.livingCells().count) { index in
-                    CellView(size: (Double(geometry.size.height)/60.0))
-                        .offset(x: CGFloat(Double(colony.livingCells()[index].col)*Double(geometry.size.height)/(60.0)),
-                                y: CGFloat(Double( colony.livingCells()[index].row)*Double(geometry.size.height)/(60.0)))
+                ForEach(0..<cells.count) { index in
+                    CellView(size: (Double(geometry.size.height)/60.0)) /*$colony.aliveCells[index]*//*Binding(
+                            get: {self.cells[index]},
+                            set: {self.colony.cellsAlive[index] = $0}
+                    )*///)
+                        .offset(x: CGFloat(Double(cells[index].col)*Double(geometry.size.height)/(60.0)),
+                                y: CGFloat(Double( cells[index].row)*Double(geometry.size.height)/(60.0)))
                         .onTapGesture {
                             colony.setCellDead(row: colony.livingCells()[index].row, col: colony.livingCells()[index].col)
                         }
@@ -37,6 +45,7 @@ struct ColonyView_Previews: PreviewProvider {
             var colony = Colony(size: 60)
             colony.setCellAlive(row: 1, col: 1)
             colony.setCellAlive(row: 2, col: 2)
+            colony.setCellAlive(row: 3, col: 3)
             return colony
         }())//colony: Colony(size: 60))//, name: "Unnamed Colony", generationNumber: 2)
     }
@@ -45,6 +54,7 @@ struct ColonyView_Previews: PreviewProvider {
 struct CellView : View {
     let size : Double
     //let alive : Bool
+    //@Binding var coordinate : Coordinate
     
     var body: some View {
         RoundedRectangle(cornerRadius: CGFloat(size / 5.0))
