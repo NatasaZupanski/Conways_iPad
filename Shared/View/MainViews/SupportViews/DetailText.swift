@@ -13,7 +13,7 @@ struct DetailText: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("Details:")
-                .font(.title)
+                .font(.title) // smaller font?
                 .fontWeight(.medium)
             Text("Name: ") + Text(colony.name)
             Text("Locked: ") + Text(String(colony.locked))
