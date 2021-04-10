@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ColonyView: View {
     var colony : Colony
-    let name : String
-    var generationNumber : Int
+    //let name : String
+    //var generationNumber : Int
     
     var body: some View {
         GeometryReader { geometry in
@@ -23,14 +23,14 @@ struct ColonyView: View {
                 //Text("Testing")
             }
         }.navigationBarTitle({
-            return Text(name) + Text("Generation: ") + Text(String(generationNumber))
+            return Text(colony.name) + Text("Generation: ") + Text(String(colony.generationNumber))
         }())
     }
 }
 
 struct ColonyView_Previews: PreviewProvider {
     static var previews: some View {
-        ColonyView(colony: Colony(size: 60), name: "Unnamed Colony", generationNumber: 2)
+        ColonyView(colony: Colony(size: 60))//, name: "Unnamed Colony", generationNumber: 2)
     }
 }
 
