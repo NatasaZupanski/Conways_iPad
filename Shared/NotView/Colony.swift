@@ -13,6 +13,8 @@ struct Colony : CustomStringConvertible, Identifiable {
     let id = UUID()
     var name = "Unnamed Colony"
     var generationNumber = 0
+    var locked = false
+    let originalTemplate = "Blank" // This should probably be a : String, but it's easier w/ a default for testing
 
     ///Length of edge of square colony
     private var size:Int;

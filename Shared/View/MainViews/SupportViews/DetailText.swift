@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DetailText: View {
-    var colony : Colony
+    var colony : Colony // Should be binding to show changes?
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -16,8 +16,8 @@ struct DetailText: View {
                 .font(.title)
                 .fontWeight(.medium)
             Text("Name: ") + Text(colony.name)
-            Text("Locked: ")
-            Text("Original Template: ")
+            Text("Locked: ") + Text(String(colony.locked))
+            Text("Original Template: ") + Text(colony.originalTemplate)
         }
     }
 }
