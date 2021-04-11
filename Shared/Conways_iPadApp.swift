@@ -18,6 +18,7 @@ struct Conways_iPadApp: App {
                 colony.setCellAlive(row: 2, col: 2)
                 return colony
             }())*/
+            //TemplateGrid(templates: [Colony(size: 60), Colony(size: 60), Colony(size: 60)])
         }
     }
 }
