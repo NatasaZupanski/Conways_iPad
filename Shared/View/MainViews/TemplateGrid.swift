@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TemplateGrid: View {
     var templates : [Colony]
+    var enableNew : Bool
     var parsedTemplates : [(Colony, Colony?)] {
         // error here with amount of templates returned
         var parsed = [(Colony, Colony?)]()
@@ -54,6 +55,10 @@ struct TemplateGrid: View {
                     if tuple.1 != nil {
                         Template(colony: tuple.1!, width: 200.0)
                     }
+                    if enableNew && tuple.1 == nil {
+                        Image(systemName: "plus")
+                            .foregroundColor(.blue)
+                    }
                 }
             }
         }
@@ -62,6 +67,6 @@ struct TemplateGrid: View {
 
 struct TemplateGrid_Previews: PreviewProvider {
     static var previews: some View {
-        TemplateGrid(templates: [Colony(size: 60), Colony(size: 60), Colony(size: 60)])
+        TemplateGrid(templates: [Colony(size: 60), Colony(size: 60), Colony(size: 60)], enableNew: true)
     }
 }
