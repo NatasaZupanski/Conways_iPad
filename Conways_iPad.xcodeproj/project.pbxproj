@@ -16,7 +16,6 @@
 		04C738E72620C41400A30C50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04C738BC2620C41400A30C50 /* Assets.xcassets */; };
 		04C738E82620C41400A30C50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04C738BC2620C41400A30C50 /* Assets.xcassets */; };
 		04C739082620CB2A00A30C50 /* ColonyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C739072620CB2A00A30C50 /* ColonyView.swift */; };
-		04C7390D2620CB2C00A30C50 /* ColonyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C739072620CB2A00A30C50 /* ColonyView.swift */; };
 		04C73918262223F400A30C50 /* DetailText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C73917262223F400A30C50 /* DetailText.swift */; };
 		04C739222622266700A30C50 /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C739212622266700A30C50 /* Template.swift */; };
 		04C739282622290800A30C50 /* TemplateGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C739272622290800A30C50 /* TemplateGrid.swift */; };
@@ -381,7 +380,6 @@
 			files = (
 				04C738E62620C41400A30C50 /* ContentView.swift in Sources */,
 				04C738E42620C41400A30C50 /* Conways_iPadApp.swift in Sources */,
-				04C7390D2620CB2C00A30C50 /* ColonyView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

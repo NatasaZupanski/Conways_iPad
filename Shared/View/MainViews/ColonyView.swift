@@ -33,9 +33,10 @@ struct ColonyView: View {
                 }
                 //Text("Testing")
             }
-        }.navigationBarTitle({
-            return Text(colony.name) + Text("Generation: ") + Text(String(colony.generationNumber))
-        }())
+            .navigationBarTitle({
+                return Text(colony.name) + Text("Generation: ") + Text(String(colony.generationNumber))
+            }())
+        }
     }
 }
 
