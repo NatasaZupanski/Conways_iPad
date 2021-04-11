@@ -50,6 +50,14 @@ struct TemplateGrid: View {
         return parsed
     }
     
+    var count : CGFloat {
+        if parsedTemplates.last!.1 == nil {
+            return CGFloat(parsedTemplates.count)
+        } else {
+            return CGFloat(parsedTemplates.count + 1)
+        }
+    }
+    
     var body: some View {
         
         GeometryReader { geometry in
@@ -75,13 +83,13 @@ struct TemplateGrid: View {
                             }
                             //Spacer()
                         }
-                    }.frame(height: CGFloat(geometry.size.height/3))
+                    }.frame(height: CGFloat(geometry.size.height/count))
                 }
                 if enableNew && parsedTemplates.last!.1 != nil {
                     Button(action: addTemplate) {
                         Image(systemName: "plus")
                             .foregroundColor(.blue)
-                            .frame(width: (CGFloat(Double(geometry.size.width)) / 2.0), height: geometry.size.height / 3.0)
+                            .frame(width: (CGFloat(Double(geometry.size.width)) / 2.0), height: geometry.size.height / count)
                     }
                 }
             }
