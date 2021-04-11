@@ -13,7 +13,22 @@ struct TemplateGrid: View {
         var parsed = [(Colony, Colony?)]()
         var count = 0
         var partial : (Colony, Colony?) = (Colony(size: 60), nil)
-        for template in templates {
+        for index in 0..<templates.count {
+            if count == 0 {
+                partial.0 = templates[index]
+                count += 1
+            }
+            if count == 1 {
+                partial.1 = templates[index]
+                count = 0
+                parsed += [partial]
+            }
+            if index == (templates.count - 1) && count == 0 {
+                parsed += [partial]
+            }
+        }
+        
+        /*for template in templates {
             if count == 0 {
                 partial.0 = template
                 count += 1
@@ -23,8 +38,7 @@ struct TemplateGrid: View {
                 count = 0
                 parsed += [partial]
             }
-            parsed += [partial]
-        }
+        }*/
         return parsed
     }
     
