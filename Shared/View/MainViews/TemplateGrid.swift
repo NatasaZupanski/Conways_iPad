@@ -9,23 +9,26 @@ import SwiftUI
 
 struct TemplateGrid: View {
     var templates : [Colony]
-    var parsedTemplates : [(Colony, Colony?)] { // error here with amount of templates returned
+    var parsedTemplates : [(Colony, Colony?)] {
+        // error here with amount of templates returned
         var parsed = [(Colony, Colony?)]()
-        var count = 0
+        //var count = 0
         var partial : (Colony, Colony?) = (Colony(size: 60), nil)
         for index in 0..<templates.count {
-            if count == 0 {
+            if index%2 == 0 {
                 partial.0 = templates[index]
-                count += 1
+                //count += 1
             }
-            if count == 1 {
+            if index%2 == 1 {
                 partial.1 = templates[index]
-                count = 0
+                //count = 0
                 parsed += [partial]
             }
-            if index == (templates.count - 1) && count == 0 {
+            if index == (templates.count - 1) && index%2 == 0 {
+                partial.1 = nil
                 parsed += [partial]
             }
+            print("\(index): \(parsed.count)")
         }
         
         /*for template in templates {
