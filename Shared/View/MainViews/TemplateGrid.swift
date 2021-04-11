@@ -10,7 +10,7 @@ import SwiftUI
 struct TemplateGrid: View {
     @State var templates : [Colony]
     // need to probably make an @EnvironmentObject of templates?
-    @State var colony : Colony
+    var colony : Colony
     // need to make rework this with @StateObject ColonyData, colony, and colonyIndex
     
     var enableNew : Bool
