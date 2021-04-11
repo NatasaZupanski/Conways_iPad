@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct TemplateGrid: View {
-    var templates : [Colony]
+    @State var templates : [Colony]
+    // need to probably make an @EnvironmentObject of templates?
+    @State var colony : Colony
+    // need to make rework this with @StateObject ColonyData, colony, and colonyIndex
+    
     var enableNew : Bool
     var parsedTemplates : [(Colony, Colony?)] {
         // error here with amount of templates returned
@@ -53,30 +57,53 @@ struct TemplateGrid: View {
                 ForEach(parsedTemplates, id: \.self.0.id) { tuple in
                     HStack(alignment: .center) {
                         Template(colony: tuple.0, width: (Double(geometry.size.width) / 2.0))
+                            .onTapGesture {
+                                setColony(newColony: tuple.0)
+                            }
                         if tuple.1 != nil {
                             Template(colony: tuple.1!, width: (Double(geometry.size.width) / 2.0))
+                                .onTapGesture {
+                                    setColony(newColony: tuple.1!)
+                                }
                         }
                         if enableNew && tuple.1 == nil {
                             //Spacer()
-                            Image(systemName: "plus")
-                                .foregroundColor(.blue)
-                                .frame(width: (CGFloat(Double(geometry.size.width)) / 2.0))
+                            Button(action: addTemplate) {
+                                Image(systemName: "plus")
+                                    .foregroundColor(.blue)
+                                    .frame(width: (CGFloat(Double(geometry.size.width)) / 2.0))
+                            }
                             //Spacer()
                         }
                     }.frame(height: CGFloat(geometry.size.height/3))
                 }
                 if enableNew && parsedTemplates.last!.1 != nil {
-                    Image(systemName: "plus")
-                        .foregroundColor(.blue)
-                        .frame(width: (CGFloat(Double(geometry.size.width)) / 2.0), height: geometry.size.height / 3.0)
+                    Button(action: addTemplate) {
+                        Image(systemName: "plus")
+                            .foregroundColor(.blue)
+                            .frame(width: (CGFloat(Double(geometry.size.width)) / 2.0), height: geometry.size.height / 3.0)
+                    }
                 }
             }
         }
     }
+    
+    func setColonyFromTemplate(_ index: Int) {
+        colony.setColonyFromCoors(cells: templates[index].livingCells())
+    }
+    
+    func addTemplate() {
+        templates.append(colony)
+    }
+    
+    func setColony(newColony: Colony) {
+        colony.setColonyFromCoors(cells: newColony.livingCells())
+    }
+    
 }
 
 struct TemplateGrid_Previews: PreviewProvider {
     static var previews: some View {
-        TemplateGrid(templates: [Colony(size: 60), Colony(size: 60), Colony(size: 60), Colony(size: 60)], enableNew: true)
+        TemplateGrid(templates: [Colony(size: 60), Colony(size: 60), Colony(size: 60), Colony(size: 60)], colony: Colony(size: 60), enableNew: true)
     }
 }
