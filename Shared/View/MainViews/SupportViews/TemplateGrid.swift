@@ -112,6 +112,6 @@ struct TemplateGrid: View {
 
 struct TemplateGrid_Previews: PreviewProvider {
     static var previews: some View {
-        TemplateGrid(templates: [Colony(size: 60), Colony(size: 60), Colony(size: 60), Colony(size: 60)], colony: Colony(size: 60), enableNew: true)
+        TemplateGrid(templates: ColonyData.templates, colony: Colony(size: 60), enableNew: true)
     }
 }

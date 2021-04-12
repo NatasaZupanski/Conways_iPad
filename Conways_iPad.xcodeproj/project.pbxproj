@@ -24,6 +24,7 @@
 		96E370E42620CC8E00F9A8E7 /* Colony.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E370E32620CC8E00F9A8E7 /* Colony.swift */; };
 		96E370EB2620CD0100F9A8E7 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E370EA2620CD0100F9A8E7 /* Coordinate.swift */; };
 		96E370F52620CD5E00F9A8E7 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E370F42620CD5E00F9A8E7 /* ListView.swift */; };
+		96E371112623BD1200F9A8E7 /* ColonyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E371102623BD1200F9A8E7 /* ColonyData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		96E370E32620CC8E00F9A8E7 /* Colony.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colony.swift; sourceTree = "<group>"; };
 		96E370EA2620CD0100F9A8E7 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		96E370F42620CD5E00F9A8E7 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		96E371102623BD1200F9A8E7 /* ColonyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColonyData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +209,7 @@
 			children = (
 				96E370E32620CC8E00F9A8E7 /* Colony.swift */,
 				96E370EA2620CD0100F9A8E7 /* Coordinate.swift */,
+				96E371102623BD1200F9A8E7 /* ColonyData.swift */,
 			);
 			path = NotView;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				047201CB2623A2AD003F8711 /* ControlView.swift in Sources */,
 				04C738E52620C41400A30C50 /* ContentView.swift in Sources */,
 				96E370F52620CD5E00F9A8E7 /* ListView.swift in Sources */,
+				96E371112623BD1200F9A8E7 /* ColonyData.swift in Sources */,
 				04C738E32620C41400A30C50 /* Conways_iPadApp.swift in Sources */,
 				04C739222622266700A30C50 /* Template.swift in Sources */,
 				047201C52623A1C4003F8711 /* TabbedView.swift in Sources */,

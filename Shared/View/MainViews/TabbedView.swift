@@ -12,7 +12,13 @@ struct TabbedView: View {
     
     var body: some View {
         TabView {
-            ListView()
+            ListView(colony: {
+                var colony = Colony(size: 60)
+                colony.setCellAlive(row: 1, col: 1)
+                colony.setCellAlive(row: 2, col: 2)
+                colony.setCellAlive(row: 3, col: 3)
+                return colony
+            }())
                 .tabItem {
                     Image(systemName: "list.bullet")
                 }

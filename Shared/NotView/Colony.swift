@@ -11,10 +11,10 @@ struct Colony : CustomStringConvertible, Identifiable {
 //    private (set) var name: String
     //private (set) var generationNumber = 0
     let id = UUID()
-    var name = "Unnamed Colony"
+    var name: String
     var generationNumber = 0
     var locked = false
-    let originalTemplate = "Blank" // This should probably be a : String, but it's easier w/ a default for testing
+    let originalTemplate: String
 
     ///Length of edge of square colony
     private var size:Int;
@@ -25,9 +25,11 @@ struct Colony : CustomStringConvertible, Identifiable {
     ///Reference for evolve()
 //    private var refSet:Set<Coordinate>;
 
-    init(size: Int) {
+    init(size: Int = 60, name: String = "Unnamed Colony", originalTemplate: String = "Blank") {
         self.size = size;
         aliveCells = [];
+        self.name = name;
+        self.originalTemplate = originalTemplate
     }
 
     mutating func setColonyFromCoors(cells: [Coordinate]) {
