@@ -65,6 +65,7 @@ struct ListView: View {
             
         }
         .padding(19.0)
+        .background(Color(UIColor.lightGray))
 
     }
 }
@@ -72,7 +73,7 @@ struct ListView: View {
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
         ListView(colony: {
-            var colony = ColonyData.colonies[1]
+            var colony = ColonyData.colonies[0]
             colony.setCellAlive(row: 1, col: 1)
             colony.setCellAlive(row: 2, col: 2)
             colony.setCellAlive(row: 3, col: 3)

@@ -184,9 +184,9 @@
 		04C739012620C5FD00A30C50 /* MainViews */ = {
 			isa = PBXGroup;
 			children = (
+				04C738BB2620C41300A30C50 /* ContentView.swift */,
 				04C739072620CB2A00A30C50 /* ColonyView.swift */,
 				047201C42623A1C4003F8711 /* TabbedView.swift */,
-				04C738BB2620C41300A30C50 /* ContentView.swift */,
 				96E370F42620CD5E00F9A8E7 /* ListView.swift */,
 			);
 			path = MainViews;
