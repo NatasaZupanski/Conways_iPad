@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct TemplateGrid: View {
-    @State var templates : [Colony]
+    var colonyData = ColonyData()
+    
     // need to probably make an @EnvironmentObject of templates?
     @State var colony : Colony
     // need to make rework this with @StateObject ColonyData, colony, and colonyIndex
@@ -19,17 +20,17 @@ struct TemplateGrid: View {
         var parsed = [(Colony, Colony?)]()
         //var count = 0
         var partial : (Colony, Colony?) = (Colony(size: 60), nil)
-        for index in 0..<templates.count {
+        for index in 0..<ColonyData.templates.count {
             if index%2 == 0 {
-                partial.0 = templates[index]
+                partial.0 = ColonyData.templates[index]
                 //count += 1
             }
             if index%2 == 1 {
-                partial.1 = templates[index]
+                partial.1 = ColonyData.templates[index]
                 //count = 0
                 parsed += [partial]
             }
-            if index == (templates.count - 1) && index%2 == 0 {
+            if index == (ColonyData.templates.count - 1) && index%2 == 0 {
                 partial.1 = nil
                 parsed += [partial]
             }
@@ -97,11 +98,11 @@ struct TemplateGrid: View {
     }
     
     func setColonyFromTemplate(_ index: Int) {
-        colony.setColonyFromCoors(cells: templates[index].livingCells())
+        colony.setColonyFromCoors(cells: ColonyData.templates[index].livingCells())
     }
     
     func addTemplate() {
-        templates.append(colony)
+        ColonyData.templates.append(colony)
     }
     
     func setColony(newColony: Colony) {
@@ -112,6 +113,6 @@ struct TemplateGrid: View {
 
 struct TemplateGrid_Previews: PreviewProvider {
     static var previews: some View {
-        TemplateGrid(templates: ColonyData.templates, colony: Colony(size: 60), enableNew: true)
+        TemplateGrid(colony: Colony(size: 60), enableNew: true)
     }
 }

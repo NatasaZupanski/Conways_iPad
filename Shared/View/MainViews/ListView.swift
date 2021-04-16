@@ -58,7 +58,7 @@ struct ListView: View {
                     .font(.title2)
                     .bold()
                 
-                TemplateGrid(templates: [Colony(size: 60), Colony(size: 60), Colony(size: 60), Colony(size: 60)], colony: Colony(size: 60), enableNew: true)
+                TemplateGrid(colony: Colony(size: 60), enableNew: true)
             }
             
             
