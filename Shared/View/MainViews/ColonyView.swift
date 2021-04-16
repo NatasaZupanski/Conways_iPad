@@ -20,6 +20,8 @@ struct ColonyView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
+                //Rectangle()
+                    //.foregroundColor(.white)
                 ForEach(0..<cells.count) { index in
                     CellView(size: (Double(geometry.size.height)/60.0)) /*$colony.aliveCells[index]*//*Binding(
                             get: {self.cells[index]},
