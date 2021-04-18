@@ -11,7 +11,7 @@ struct TemplateGrid: View {
     var colonyData = ColonyData()
     
     // need to probably make an @EnvironmentObject of templates?
-    @State var colony : Colony
+    @Binding var colony : Colony
     
     var colonyIndex : Int? {
         return ColonyData.colonies.firstIndex(where: {colony.id == $0 .id})
@@ -101,18 +101,18 @@ struct TemplateGrid: View {
         }
     }
     
-    func setColonyFromTemplate(_ index: Int) {
+    /*func setColonyFromTemplate(_ index: Int) {
         colony.setColonyFromCoors(cells: ColonyData.templates[index].livingCells())
-    }
+    }*/
     
     func addTemplate() {
         ColonyData.templates.append(colony)
     }
     
     func setColony(newColony: Colony) {
-        if colonyIndex != nil {
+        if enableNew {
             ColonyData.colonies[colonyIndex!].setColonyFromCoors(cells: newColony.livingCells())
-        } else if !enableNew {
+        } else {
             colony.setColonyFromCoors(cells: newColony.livingCells())
         }
     }
@@ -121,6 +121,6 @@ struct TemplateGrid: View {
 
 struct TemplateGrid_Previews: PreviewProvider {
     static var previews: some View {
-        TemplateGrid(colony: Colony(size: 60), enableNew: true)
+        TemplateGrid(colony: .constant(Colony(size: 60)), enableNew: true)
     }
 }

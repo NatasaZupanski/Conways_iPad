@@ -28,7 +28,7 @@ struct NewColony: View {
                         .font(.title)
                         .fontWeight(.semibold)
                         
-                    TemplateGrid(colony: newColony, enableNew: false)
+                    TemplateGrid(colony: $newColony, enableNew: false)
                     //TemplatesGrid()
                     //Spacer()
                 }.padding(.horizontal)
