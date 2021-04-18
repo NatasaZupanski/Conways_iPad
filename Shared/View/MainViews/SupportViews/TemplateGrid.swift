@@ -12,6 +12,10 @@ struct TemplateGrid: View {
     
     // need to probably make an @EnvironmentObject of templates?
     @State var colony : Colony
+    
+    var colonyIndex : Int? {
+        return ColonyData.colonies.firstIndex(where: {colony.id == $0 .id})
+    }
     // need to make rework this with @StateObject ColonyData, colony, and colonyIndex
     
     var enableNew : Bool
@@ -106,7 +110,11 @@ struct TemplateGrid: View {
     }
     
     func setColony(newColony: Colony) {
-        colony.setColonyFromCoors(cells: newColony.livingCells())
+        if colonyIndex != nil {
+            ColonyData.colonies[colonyIndex!].setColonyFromCoors(cells: newColony.livingCells())
+        } else if !enableNew {
+            colony.setColonyFromCoors(cells: newColony.livingCells())
+        }
     }
     
 }
