@@ -13,25 +13,27 @@ struct NewColony: View {
     @State var newColony = Colony(size: 60)
     
     var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                HStack {
-                    Text("Name:")
+        GeometryReader { geo in
+            HStack {
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text("Name:")
+                                .font(.title)
+                                .fontWeight(.semibold)
+                        TextField("Unnamed Colony", text: $text)
                             .font(.title)
-                            .fontWeight(.semibold)
-                    TextField("Unnamed Colony", text: $text)
+                    }
+                    Text("Templates")
                         .font(.title)
-                }
-                Text("Templates")
-                    .font(.title)
-                    .fontWeight(.semibold)
-                    
-                TemplateGrid(colony: newColony, enableNew: false)
-                //TemplatesGrid()
-                //Spacer()
-            }.padding(.horizontal)
-            Divider()
-            Template(colony: newColony, width: 500.0)
+                        .fontWeight(.semibold)
+                        
+                    TemplateGrid(colony: newColony, enableNew: false)
+                    //TemplatesGrid()
+                    //Spacer()
+                }.padding(.horizontal)
+                Divider()
+                Template(colony: newColony, width: Double(geo.size.width) * (2.0/3.0))
+            }
         }
     }
     
