@@ -33,6 +33,10 @@ struct NewColony: View {
             Template(colony: newColony, width: 500.0)
         }
     }
+    
+    func addColony() {
+        ColonyData.colonies.append(newColony)
+    }
 }
 
 struct NewColony_Previews: PreviewProvider {
