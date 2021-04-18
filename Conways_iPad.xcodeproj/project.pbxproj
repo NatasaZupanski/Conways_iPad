@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0404F33A262CB9870093B1DD /* NewColony.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404F339262CB9870093B1DD /* NewColony.swift */; };
 		047201C52623A1C4003F8711 /* TabbedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047201C42623A1C4003F8711 /* TabbedView.swift */; };
 		047201CB2623A2AD003F8711 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047201CA2623A2AD003F8711 /* ControlView.swift */; };
 		04C738D62620C41400A30C50 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C738D52620C41400A30C50 /* Tests_iOS.swift */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0404F339262CB9870093B1DD /* NewColony.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewColony.swift; sourceTree = "<group>"; };
 		047201C42623A1C4003F8711 /* TabbedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbedView.swift; sourceTree = "<group>"; };
 		047201CA2623A2AD003F8711 /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
 		04C738BA2620C41300A30C50 /* Conways_iPadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conways_iPadApp.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				04C738BB2620C41300A30C50 /* ContentView.swift */,
+				047201CA2623A2AD003F8711 /* ControlView.swift */,
 				04C739072620CB2A00A30C50 /* ColonyView.swift */,
 				047201C42623A1C4003F8711 /* TabbedView.swift */,
 				96E370F42620CD5E00F9A8E7 /* ListView.swift */,
@@ -198,7 +201,7 @@
 				04C73917262223F400A30C50 /* DetailText.swift */,
 				04C739272622290800A30C50 /* TemplateGrid.swift */,
 				04C739212622266700A30C50 /* Template.swift */,
-				047201CA2623A2AD003F8711 /* ControlView.swift */,
+				0404F339262CB9870093B1DD /* NewColony.swift */,
 			);
 			name = SupportViews;
 			path = MainViews/SupportViews;
@@ -372,6 +375,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04C73918262223F400A30C50 /* DetailText.swift in Sources */,
+				0404F33A262CB9870093B1DD /* NewColony.swift in Sources */,
 				96E370E42620CC8E00F9A8E7 /* Colony.swift in Sources */,
 				047201CB2623A2AD003F8711 /* ControlView.swift in Sources */,
 				04C738E52620C41400A30C50 /* ContentView.swift in Sources */,

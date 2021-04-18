@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Template: View {
-    let colony : Colony
+    var colony : Colony
     var cells : [Coordinate] {
         return colony.livingCells()
     }
