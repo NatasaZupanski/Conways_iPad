@@ -14,7 +14,7 @@ struct Colony : CustomStringConvertible, Identifiable {
     var name: String
     var generationNumber = 0
     var locked = false
-    let originalTemplate: String
+    var originalTemplate: String
 
     ///Length of edge of square colony
     private var size:Int;

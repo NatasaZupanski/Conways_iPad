@@ -11,6 +11,7 @@ struct NewColony: View {
     //@State var text = " "
     var colonyData = ColonyData()
     @State var newColony = Colony(size: 60)
+    @State var template = "Blank"
     
     var body: some View {
         GeometryReader { geo in
@@ -38,6 +39,7 @@ struct NewColony: View {
     }
     
     func addColony() {
+        newColony.originalTemplate = template
         ColonyData.colonies.append(newColony)
         // will add this to a button.
     }
