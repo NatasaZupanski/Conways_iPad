@@ -38,6 +38,9 @@ struct ColonyView: View {
                     CellView(size: (Double(geometry.size.height)/60.0))
                         .offset(x: CGFloat(Double(cell.col)*Double(geometry.size.height)/(60.0)),
                                 y: CGFloat(Double( cell.row)*Double(geometry.size.height)/(60.0)))
+                        .onTapGesture {
+                            colony.setCellDead(row: cell.row, col: cell.col)
+                        }
                 }
                 //Text("Testing")
             }
@@ -46,6 +49,7 @@ struct ColonyView: View {
             }())
         }
     }
+    
 }
 
 struct ColonyView_Previews: PreviewProvider {

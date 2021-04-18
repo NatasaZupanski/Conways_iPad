@@ -28,13 +28,18 @@ struct Template: View {
                 .fontWeight(.medium)
             GeometryReader { geometry in
                 ZStack {
-                    ForEach(0..<cells.count) { index in
+                    /*ForEach(0..<cells.count) { index in
                         CellView(size: (Double(geometry.size.width)/60.0)) /*$colony.aliveCells[index]*//*Binding(
                                 get: {self.cells[index]},
                                 set: {self.colony.cellsAlive[index] = $0}
                         )*///)
                             .offset(x: CGFloat(Double(cells[index].col)*Double(geometry.size.width)/(60.0)),
                                     y: CGFloat(Double( cells[index].row)*Double(geometry.size.width)/(60.0)))
+                    }*/
+                    ForEach(cells) { cell in
+                        CellView(size: (Double(geometry.size.height)/60.0))
+                            .offset(x: CGFloat(Double(cell.col)*Double(geometry.size.height)/(60.0)),
+                                    y: CGFloat(Double( cell.row)*Double(geometry.size.height)/(60.0)))
                     }
                     //Text("Testing")
                 }
