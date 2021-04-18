@@ -30,6 +30,7 @@ struct NewColony: View {
                 //TemplatesGrid()
                 //Spacer()
             }.padding(.horizontal)
+            Divider()
             Template(colony: newColony, width: 500.0)
         }
     }

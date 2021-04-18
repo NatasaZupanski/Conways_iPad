@@ -18,6 +18,7 @@ struct Conways_iPadApp: App {
                 colony.setCellAlive(row: 3, col: 3)
                 return colony
             }())
+            //NewColony()
             /*ColonyView(colony: {
                 var colony = Colony(size: 60)
                 colony.setCellAlive(row: 1, col: 1)
