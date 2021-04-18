@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NewColony: View {
-    @State var text = ""
+    //@State var text = " "
     var colonyData = ColonyData()
     @State var newColony = Colony(size: 60)
     
@@ -20,7 +20,7 @@ struct NewColony: View {
                         Text("Name:")
                                 .font(.title)
                                 .fontWeight(.semibold)
-                        TextField("Unnamed Colony", text: $text)
+                        TextField("Unnamed Colony", text: $newColony.name)
                             .font(.title)
                     }
                     Text("Templates")
@@ -32,13 +32,21 @@ struct NewColony: View {
                     //Spacer()
                 }.padding(.horizontal)
                 Divider()
-                Template(colony: newColony, width: Double(geo.size.width) * (2.0/3.0))
+                Template(colony: newColony, width: Double(geo.size.width) * (2.0/3.0), name: $newColony.name)
             }
         }
     }
     
     func addColony() {
         ColonyData.colonies.append(newColony)
+        // will add this to a button.
+    }
+    
+    var button : some View {
+        Button(action: addColony) {
+            Text("+")
+                .foregroundColor(.blue)
+        }
     }
 }
 

@@ -38,7 +38,7 @@ struct TemplateGrid: View {
                 partial.1 = nil
                 parsed += [partial]
             }
-            print("\(index): \(parsed.count)")
+            //print("\(index): \(parsed.count)")
         }
         
         /*for template in templates {
@@ -69,12 +69,12 @@ struct TemplateGrid: View {
             VStack(alignment: .leading) {
                 ForEach(parsedTemplates, id: \.self.0.id) { tuple in
                     HStack(alignment: .center) {
-                        Template(colony: tuple.0, width: (Double(geometry.size.width) / 2.0))
+                        Template(colony: tuple.0, width: (Double(geometry.size.width) / 2.0), name: .constant(""))
                             .onTapGesture {
                                 setColony(newColony: tuple.0)
                             }
                         if tuple.1 != nil {
-                            Template(colony: tuple.1!, width: (Double(geometry.size.width) / 2.0))
+                            Template(colony: tuple.1!, width: (Double(geometry.size.width) / 2.0), name: .constant(""))
                                 .onTapGesture {
                                     setColony(newColony: tuple.1!)
                                 }

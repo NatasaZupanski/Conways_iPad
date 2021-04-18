@@ -8,15 +8,23 @@
 import SwiftUI
 
 struct Template: View {
-    var colony : Colony
+    @State var colony : Colony
     var cells : [Coordinate] {
         return colony.livingCells()
     }
     var width : Double
+    @Binding var name : String
+    var previewing : Bool {
+        if name != "" {
+            return true
+        } else {
+            return false
+        }
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(colony.name)
+            Text(previewing ? name : colony.name)
                 .fontWeight(.medium)
             GeometryReader { geometry in
                 ZStack {
@@ -43,6 +51,6 @@ struct Template_Previews: PreviewProvider {
             colony.setCellAlive(row: 2, col: 2)
             colony.setCellAlive(row: 3, col: 3)
             return colony
-        }(), width: 200.0)
+        }(), width: 200.0, name: .constant(""))
     }
 }
