@@ -13,7 +13,7 @@ struct ContentView: View {
     @State var colony: Colony
     
     var body: some View {
-        NavigationView {
+        //NavigationView {
             HStack {
                     VStack {
                         Text("Controls")
@@ -32,7 +32,7 @@ struct ContentView: View {
                         ColonyView(colony: colony)
                     }
             }
-        }
+        //}
     }
 }
 
