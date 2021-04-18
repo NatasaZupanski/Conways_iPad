@@ -22,7 +22,7 @@ struct ColonyView: View {
             ZStack {
                 //Rectangle()
                     //.foregroundColor(.white)
-                ForEach(0..<cells.count) { index in
+                /*ForEach(0..<cells.count) { index in
                     CellView(size: (Double(geometry.size.height)/60.0)) /*$colony.aliveCells[index]*//*Binding(
                             get: {self.cells[index]},
                             set: {self.colony.cellsAlive[index] = $0}
@@ -32,6 +32,12 @@ struct ColonyView: View {
                         .onTapGesture {
                             colony.setCellDead(row: colony.livingCells()[index].row, col: colony.livingCells()[index].col)
                         }
+                }*/
+                
+                ForEach(cells) { cell in
+                    CellView(size: (Double(geometry.size.height)/60.0))
+                        .offset(x: CGFloat(Double(cell.col)*Double(geometry.size.height)/(60.0)),
+                                y: CGFloat(Double( cell.row)*Double(geometry.size.height)/(60.0)))
                 }
                 //Text("Testing")
             }

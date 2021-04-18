@@ -69,12 +69,12 @@ struct TemplateGrid: View {
             VStack(alignment: .leading) {
                 ForEach(parsedTemplates, id: \.self.0.id) { tuple in
                     HStack(alignment: .center) {
-                        Template(colony: tuple.0, width: (Double(geometry.size.width) / 2.0), name: .constant(""))
+                        Template(colony: .constant(tuple.0), width: (Double(geometry.size.width) / 2.0), name: .constant(""))
                             .onTapGesture {
                                 setColony(newColony: tuple.0)
                             }
                         if tuple.1 != nil {
-                            Template(colony: tuple.1!, width: (Double(geometry.size.width) / 2.0), name: .constant(""))
+                            Template(colony: .constant(tuple.1!), width: (Double(geometry.size.width) / 2.0), name: .constant(""))
                                 .onTapGesture {
                                     setColony(newColony: tuple.1!)
                                 }
@@ -112,8 +112,11 @@ struct TemplateGrid: View {
     func setColony(newColony: Colony) {
         if enableNew {
             ColonyData.colonies[colonyIndex!].setColonyFromCoors(cells: newColony.livingCells())
+            print("Selected colony updates from Templates")
         } else {
+            colony.originalTemplate = newColony.name
             colony.setColonyFromCoors(cells: newColony.livingCells())
+            print("Colony being made updated from Templates")
         }
     }
     

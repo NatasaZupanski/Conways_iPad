@@ -33,7 +33,7 @@ struct NewColony: View {
                     //Spacer()
                 }.padding(.horizontal)
                 Divider()
-                Template(colony: newColony, width: Double(geo.size.width) * (2.0/3.0), name: $newColony.name)
+                Template(colony: $newColony, width: Double(geo.size.width) * (2.0/3.0), name: $newColony.name)
             }
         }
     }

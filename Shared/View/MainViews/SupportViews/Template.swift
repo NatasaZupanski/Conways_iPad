@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Template: View {
-    @State var colony : Colony
+    @Binding var colony : Colony
     var cells : [Coordinate] {
         return colony.livingCells()
     }
@@ -50,7 +50,7 @@ struct Template_Previews: PreviewProvider {
             colony.setCellAlive(row: 1, col: 1)
             colony.setCellAlive(row: 2, col: 2)
             colony.setCellAlive(row: 3, col: 3)
-            return colony
+            return .constant(colony)
         }(), width: 200.0, name: .constant(""))
     }
 }
