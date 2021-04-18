@@ -112,11 +112,11 @@ struct TemplateGrid: View {
     func setColony(newColony: Colony) {
         if enableNew {
             ColonyData.colonies[colonyIndex!].setColonyFromCoors(cells: newColony.livingCells())
-            print("Selected colony updates from Templates")
+            //print("Selected colony updates from Templates")
         } else {
             colony.originalTemplate = newColony.name
             colony.setColonyFromCoors(cells: newColony.livingCells())
-            print("Colony being made updated from Templates")
+            //print("Colony being made updated from Templates")
         }
     }
     
