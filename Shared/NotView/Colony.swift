@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct Colony : CustomStringConvertible {//}, Identifiable {
+struct Colony : CustomStringConvertible , Identifiable {
 //    private (set) var name: String
     //private (set) var generationNumber = 0
-//    let id = UUID()
+    let id = UUID()
     var name: String
     var generationNumber = 0
     var locked = false

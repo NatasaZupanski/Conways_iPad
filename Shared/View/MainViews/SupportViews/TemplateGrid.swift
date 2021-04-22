@@ -19,11 +19,11 @@ struct TemplateGrid: View {
     // need to make rework this with @StateObject ColonyData, colony, and colonyIndex
     
     var enableNew : Bool
-    var parsedTemplates : [(ColonyTimer, ColonyTimer?)] {
+    var parsedTemplates : [(Colony, Colony?)] {
         // error here with amount of templates returned
-        var parsed = [(ColonyTimer, ColonyTimer?)]()
+        var parsed = [(Colony, Colony?)]()
         //var count = 0
-        var partial : (ColonyTimer, ColonyTimer?) = (ColonyTimer(Colony(size: 60)), nil)
+        var partial : (Colony, Colony?) = (Colony(size: 60), nil)
         for index in 0..<ColonyData.templates.count {
             if index%2 == 0 {
                 partial.0 = ColonyData.templates[index]
@@ -69,14 +69,14 @@ struct TemplateGrid: View {
             VStack(alignment: .leading) {
                 ForEach(parsedTemplates, id: \.self.0.id) { tuple in
                     HStack(alignment: .center) {
-                        Template(timer: tuple.0, width: (Double(geometry.size.width) / 2.0), name: .constant(""))
+                        Template(colony: tuple.0, width: (Double(geometry.size.width) / 2.0), name: .constant(""))
                             .onTapGesture {
-                                setColony(newTimer: tuple.0)
+                                setColony(newColony: tuple.0)
                             }
                         if tuple.1 != nil {
-                            Template(timer: tuple.1!, width: (Double(geometry.size.width) / 2.0), name: .constant(""))
+                            Template(colony: tuple.1!, width: (Double(geometry.size.width) / 2.0), name: .constant(""))
                                 .onTapGesture {
-                                    setColony(newTimer: tuple.1!)
+                                    setColony(newColony: tuple.1!)
                                 }
                         }
                         if enableNew && tuple.1 == nil {
@@ -106,16 +106,16 @@ struct TemplateGrid: View {
     }*/
     
     func addTemplate() {
-        ColonyData.templates.append(timer)
+        ColonyData.templates.append(timer.colony)
     }
     
-    func setColony(newTimer: ColonyTimer) {
+    func setColony(newColony: Colony) {
         if enableNew {
-            ColonyData.colonies[colonyIndex!].colony.setColonyFromCoors(cells: newTimer.colony.livingCells())
+            ColonyData.colonies[colonyIndex!].colony.setColonyFromCoors(cells: newColony.livingCells())
             //print("Selected colony updates from Templates")
         } else {
-            timer.colony.originalTemplate = newTimer.colony.name
-            timer.colony.setColonyFromCoors(cells: newTimer.colony.livingCells())
+            timer.colony.originalTemplate = newColony.name
+            timer.colony.setColonyFromCoors(cells: newColony.livingCells())
             //print("Colony being made updated from Templates")
         }
     }
