@@ -136,6 +136,7 @@ struct Colony : CustomStringConvertible {//}, Identifiable {
             }
         }
         print("it evolved")
+        print(newGen)
         if wrap {print("With wrap")}
         aliveCells = newGen
     }

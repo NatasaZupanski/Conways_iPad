@@ -27,7 +27,7 @@ class ColonyTimer: ObservableObject, Identifiable{
         if clockTimer != nil{
             killClockTimer()
         }
-        timerInterval = timerSpeed / 10.0
+        timerInterval = timerSpeed / 100.0
         clockTimer = Timer.scheduledTimer(timeInterval: timerInterval , target: self, selector: #selector(tick), userInfo: nil, repeats: true)
     }
     

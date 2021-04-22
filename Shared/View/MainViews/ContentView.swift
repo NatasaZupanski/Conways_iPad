@@ -11,7 +11,7 @@ import SwiftUI
 
 struct ContentView: View {
 //    @State var colony: Colony
-    @State var timer: ColonyTimer
+    @EnvironmentObject var timer: ColonyTimer
     
     var body: some View {
         //NavigationView {
@@ -21,7 +21,7 @@ struct ContentView: View {
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .padding(.bottom, -1.0)
-                    TabbedView(timer: timer)
+                    TabbedView()
                 }
                 .frame(minWidth: 0, idealWidth: 75, maxWidth: 300, minHeight: 0, idealHeight: 100, maxHeight: .infinity, alignment: .leading)
                     
@@ -32,7 +32,7 @@ struct ContentView: View {
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .padding(.bottom, -3.0)
-                    ColonyView(timer: timer)
+                    ColonyView()
                 }
             }
         //}
@@ -41,12 +41,13 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
         static var previews: some View {
-            ContentView(timer: {
-                var timer = ColonyData.colonies[0]
-                timer.colony.setCellAlive(row: 1, col: 1)
-                timer.colony.setCellAlive(row: 2, col: 2)
-                timer.colony.setCellAlive(row: 3, col: 3)
-                return timer
-            }())
+            ContentView()
+                .environmentObject({ () -> ColonyTimer in 
+                    let timer = ColonyData.colonies[0]
+                    timer.colony.setCellAlive(row: 1, col: 1)
+                    timer.colony.setCellAlive(row: 2, col: 2)
+                    timer.colony.setCellAlive(row: 3, col: 3)
+                    return timer
+                }())
     }
 }

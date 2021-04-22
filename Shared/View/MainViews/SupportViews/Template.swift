@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Template: View {
-    @State var timer : ColonyTimer
+    var timer : ColonyTimer
     var cells : [Coordinate] {
         return timer.colony.livingCells()
     }
@@ -51,7 +51,7 @@ struct Template: View {
 struct Template_Previews: PreviewProvider {
     static var previews: some View {
         Template(timer: {
-            var timer = ColonyData.templates[0]
+            let timer = ColonyData.templates[0]
             timer.colony.setCellAlive(row: 1, col: 1)
             timer.colony.setCellAlive(row: 2, col: 2)
             timer.colony.setCellAlive(row: 3, col: 3)

@@ -10,7 +10,7 @@ import SwiftUI
 struct ListView: View {
     @State private var isWrap = true
     @State private var speed: Double = 1
-    @StateObject var timer: ColonyTimer
+    @EnvironmentObject var timer: ColonyTimer
 //    @State var placeholder = 0
     @State private var isPaused = true
     
@@ -87,12 +87,13 @@ struct ListView: View {
 
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
-        ListView(timer: {
-            var timer = ColonyData.colonies[0]
-            timer.colony.setCellAlive(row: 1, col: 1)
-            timer.colony.setCellAlive(row: 2, col: 2)
-            timer.colony.setCellAlive(row: 3, col: 3)
-            return timer
-        }())
+        ListView()
+            .environmentObject({ () -> ColonyTimer in
+                let timer = ColonyData.colonies[0]
+                timer.colony.setCellAlive(row: 1, col: 1)
+                timer.colony.setCellAlive(row: 2, col: 2)
+                timer.colony.setCellAlive(row: 3, col: 3)
+                return timer
+            }())
     }
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ColonyView: View {
-    @State var timer : ColonyTimer
+    @EnvironmentObject var timer : ColonyTimer
     var cells : [Coordinate] {
         return timer.colony.livingCells()
     }
@@ -54,13 +54,16 @@ struct ColonyView: View {
 
 struct ColonyView_Previews: PreviewProvider {
     static var previews: some View {
-        ColonyView(timer: {
-            var timer = ColonyData.colonies[0]
-            timer.colony.setCellAlive(row: 1, col: 1)
-            timer.colony.setCellAlive(row: 2, col: 2)
-            timer.colony.setCellAlive(row: 3, col: 3)
-            return timer
-        }())//colony: Colony(size: 60))//, name: "Unnamed Colony", generationNumber: 2)
+        ColonyView()
+            .environmentObject(
+                { () -> ColonyTimer in
+                let timer = ColonyData.colonies[0]
+                timer.colony.setCellAlive(row: 1, col: 1)
+                timer.colony.setCellAlive(row: 2, col: 2)
+                timer.colony.setCellAlive(row: 3, col: 3)
+                return timer
+            }())
+        //colony: Colony(size: 60))//, name: "Unnamed Colony", generationNumber: 2)
     }
 }
 

@@ -9,17 +9,11 @@ import SwiftUI
 
 struct TabbedView: View {
     // If we do this, initating the ColonyData here may be best.
-    var timer: ColonyTimer
+    @EnvironmentObject var timer: ColonyTimer
     
     var body: some View {
         TabView {
-            ListView(timer: {
-                var timer = ColonyData.colonies[0]
-                timer.colony.setCellAlive(row: 1, col: 1)
-                timer.colony.setCellAlive(row: 2, col: 2)
-                timer.colony.setCellAlive(row: 3, col: 3)
-                return timer
-            }())
+            ListView()
                 .tabItem {
                     Image(systemName: "list.bullet")
                 }
@@ -33,12 +27,13 @@ struct TabbedView: View {
 
 struct TabbedView_Previews: PreviewProvider {
     static var previews: some View {
-        TabbedView(timer: {
-            var timer = ColonyData.colonies[0]
-            timer.colony.setCellAlive(row: 1, col: 1)
-            timer.colony.setCellAlive(row: 2, col: 2)
-            timer.colony.setCellAlive(row: 3, col: 3)
-            return timer
-        }())
+        TabbedView()
+            .environmentObject({ () -> ColonyTimer in
+                let timer = ColonyData.colonies[0]
+                timer.colony.setCellAlive(row: 1, col: 1)
+                timer.colony.setCellAlive(row: 2, col: 2)
+                timer.colony.setCellAlive(row: 3, col: 3)
+                return timer
+            }())
     }
 }
