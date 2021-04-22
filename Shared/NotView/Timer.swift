@@ -12,7 +12,7 @@ class ColonyTimer: ObservableObject, Identifiable{
     var clockTimer: Timer!
     var timerInterval = 0.1
     @Published var tickCount: Int = 0
-    var colony: Colony
+    @Published var colony: Colony
     let id = UUID()
     
     init (_ c: Colony){
@@ -32,10 +32,10 @@ class ColonyTimer: ObservableObject, Identifiable{
     }
     
     func killClockTimer(){
-        if let ct = clockTimer{
+        if let ct = clockTimer {
             ct.invalidate()
             clockTimer = nil
-            colony.clear()
+            //colony.clear()
         }
     }
     

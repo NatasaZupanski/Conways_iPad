@@ -10,7 +10,7 @@ import SwiftUI
 struct NewColony: View {
     //@State var text = " "
     var colonyData = ColonyData()
-    @State var newTimer = ColonyTimer(Colony(size: 60))
+    @StateObject var newTimer : ColonyTimer
     @State var template = "Blank"
     
     var body: some View {
@@ -28,12 +28,12 @@ struct NewColony: View {
                         .font(.title)
                         .fontWeight(.semibold)
                         
-                    TemplateGrid(timer: $newTimer, enableNew: false)
+                    TemplateGrid(timer: newTimer, enableNew: false)
                     //TemplatesGrid()
                     //Spacer()
                 }.padding(.horizontal)
                 Divider()
-                Template(timer: $newTimer, width: Double(geo.size.width) * (2.0/3.0), name: $newTimer.colony.name)
+                Template(timer: newTimer, width: Double(geo.size.width) * (2.0/3.0), name: $newTimer.colony.name)
             }
         }
     }
@@ -54,6 +54,6 @@ struct NewColony: View {
 
 struct NewColony_Previews: PreviewProvider {
     static var previews: some View {
-        NewColony()
+        NewColony(newTimer: ColonyTimer(Colony(size: 60)))
     }
 }

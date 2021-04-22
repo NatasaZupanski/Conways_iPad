@@ -11,7 +11,7 @@ struct TemplateGrid: View {
     var colonyData = ColonyData()
     
     // need to probably make an @EnvironmentObject of templates?
-    @Binding var timer : ColonyTimer
+    @State var timer : ColonyTimer
     
     var colonyIndex : Int? {
         return ColonyData.colonies.firstIndex(where: {timer.id == $0 .id})
@@ -69,12 +69,12 @@ struct TemplateGrid: View {
             VStack(alignment: .leading) {
                 ForEach(parsedTemplates, id: \.self.0.id) { tuple in
                     HStack(alignment: .center) {
-                        Template(timer: .constant(tuple.0), width: (Double(geometry.size.width) / 2.0), name: .constant(""))
+                        Template(timer: tuple.0, width: (Double(geometry.size.width) / 2.0), name: .constant(""))
                             .onTapGesture {
                                 setColony(newTimer: tuple.0)
                             }
                         if tuple.1 != nil {
-                            Template(timer: .constant(tuple.1!), width: (Double(geometry.size.width) / 2.0), name: .constant(""))
+                            Template(timer: tuple.1!, width: (Double(geometry.size.width) / 2.0), name: .constant(""))
                                 .onTapGesture {
                                     setColony(newTimer: tuple.1!)
                                 }
@@ -124,6 +124,6 @@ struct TemplateGrid: View {
 
 struct TemplateGrid_Previews: PreviewProvider {
     static var previews: some View {
-        TemplateGrid(timer: .constant(ColonyTimer(Colony(size: 60))), enableNew: true)
+        TemplateGrid(timer: ColonyTimer(Colony(size: 60)), enableNew: true)
     }
 }

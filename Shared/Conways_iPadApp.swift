@@ -18,7 +18,7 @@ struct Conways_iPadApp: App {
                 timer.colony.setCellAlive(row: 3, col: 3)
                 return timer
             }())
-            //NewColony()
+            //NewColony(newTimer: ColonyTimer(Colony(size: 60)))
             /*ColonyView(colony: {
                 var colony = Colony(size: 60)
                 colony.setCellAlive(row: 1, col: 1)

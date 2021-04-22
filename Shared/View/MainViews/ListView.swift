@@ -73,7 +73,7 @@ struct ListView: View {
                     .font(.title2)
                     .bold()
                 
-                TemplateGrid(timer: .constant(timer), enableNew: true)
+                TemplateGrid(timer: timer, enableNew: true)
             }
             
             
