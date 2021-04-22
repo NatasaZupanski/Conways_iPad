@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ColonyView: View {
-    @State var colony : Colony
+    @State var timer : ColonyTimer
     var cells : [Coordinate] {
-        return colony.livingCells()
+        return timer.colony.livingCells()
     }
     //let name : String
     //var generationNumber : Int
@@ -39,13 +39,13 @@ struct ColonyView: View {
                         .offset(x: CGFloat(Double(cell.col)*Double(geometry.size.height)/(60.0)),
                                 y: CGFloat(Double( cell.row)*Double(geometry.size.height)/(60.0)))
                         .onTapGesture {
-                            colony.setCellDead(row: cell.row, col: cell.col)
+                            timer.colony.setCellDead(row: cell.row, col: cell.col)
                         }
                 }
                 //Text("Testing")
             }
             .navigationBarTitle({
-                return Text(colony.name) + Text("Generation: ") + Text(String(colony.generationNumber))
+                return Text(timer.colony.name) + Text("Generation: ") + Text(String(timer.colony.generationNumber))
             }())
         }
     }
@@ -54,12 +54,12 @@ struct ColonyView: View {
 
 struct ColonyView_Previews: PreviewProvider {
     static var previews: some View {
-        ColonyView(colony: {
-            var colony = ColonyData.colonies[0]
-            colony.setCellAlive(row: 1, col: 1)
-            colony.setCellAlive(row: 2, col: 2)
-            colony.setCellAlive(row: 3, col: 3)
-            return colony
+        ColonyView(timer: {
+            var timer = ColonyData.colonies[0]
+            timer.colony.setCellAlive(row: 1, col: 1)
+            timer.colony.setCellAlive(row: 2, col: 2)
+            timer.colony.setCellAlive(row: 3, col: 3)
+            return timer
         }())//colony: Colony(size: 60))//, name: "Unnamed Colony", generationNumber: 2)
     }
 }

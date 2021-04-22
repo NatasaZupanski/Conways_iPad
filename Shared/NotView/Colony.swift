@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct Colony : CustomStringConvertible, Identifiable {
+struct Colony : CustomStringConvertible {//}, Identifiable {
 //    private (set) var name: String
     //private (set) var generationNumber = 0
-    let id = UUID()
+//    let id = UUID()
     var name: String
     var generationNumber = 0
     var locked = false
@@ -18,6 +18,7 @@ struct Colony : CustomStringConvertible, Identifiable {
 
     ///Length of edge of square colony
     private var size:Int;
+    var wrap = false
 
     ///A set of all alive cells.
     //private var aliveCells:Set<Coordinate>;
@@ -121,7 +122,7 @@ struct Colony : CustomStringConvertible, Identifiable {
     
     ///Takes a Bool called wrap, which will wrap the values if true
     ///creates a new set, and adds all of the new alive cells to it, and then sets the alive cells set equal to this new set
-    mutating func evolve(wrap: Bool = false) {
+    mutating func evolve() {
         var newGen = Set<Coordinate>()
         let set = setHelper(wrap: wrap)
         for a in set {
@@ -134,23 +135,10 @@ struct Colony : CustomStringConvertible, Identifiable {
                 default: break;
             }
         }
+        print("it evolved")
+        if wrap {print("With wrap")}
         aliveCells = newGen
     }
-    
-    //        generationNumber += 1
-    //
-    //        for row in 0..<size {
-    //            for col in 0..<size {
-    //                switch countNeighbors(row, col, wrap: wrap){
-    //                    case 3: newSet.insert(Coordinate(row, col))
-    //                    case 2:
-    //                        if aliveCells.contains(Coordinate(row, col)) { newSet.insert(Coordinate(row, col))
-    //                        } else {break}
-    //                    default: break;
-    //                }
-    //            }
-    //        }
-    //        aliveCells = newSet
     
     ///Wraps the coordinates for the countNeighbors function as needed
     ///Gets the coordinate value (i.e. a row or a col)
@@ -169,7 +157,8 @@ struct Colony : CustomStringConvertible, Identifiable {
     
     ///calls the evolve function and sets wrap to true (thus wrapping the values)
     mutating func evolveWrap() {
-        evolve(wrap: true)
+        wrap = true
+        evolve()
     }
 
     ///Number of alive cells in the colony

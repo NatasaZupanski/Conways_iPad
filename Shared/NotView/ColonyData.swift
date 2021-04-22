@@ -8,10 +8,10 @@
 import Foundation
 
 struct ColonyData {
-    static var colonies: [Colony] = [Colony(size: 60, name: "Test", originalTemplate: "Blank")]
-    static var templates: [Colony] = [Colony(size: 60, name: "Blank"), Colony(size: 60, name: "Basic"), Colony(size: 60, name: "Glider"), {
-        var c = Colony(size: 60)
-        c.setCellAlive(row: 1, col: 1)
-        return c
-    }()]
+    static var colonies: [ColonyTimer] = [ColonyTimer(Colony(size: 60, name: "Test", originalTemplate: "Blank"))]
+    static var templates: [ColonyTimer] = [ColonyTimer(Colony(size: 60, name: "Blank")), ColonyTimer(Colony(size: 60, name: "Basic")), ColonyTimer(Colony(size: 60, name: "Glider")), {
+        var t = ColonyTimer(Colony(size: 60))
+        t.colony.setCellAlive(row: 1, col: 1)
+        return t
+    }() ]
 }

@@ -10,7 +10,7 @@ import SwiftUI
 struct NewColony: View {
     //@State var text = " "
     var colonyData = ColonyData()
-    @State var newColony = Colony(size: 60)
+    @State var newTimer = ColonyTimer(Colony(size: 60))
     @State var template = "Blank"
     
     var body: some View {
@@ -21,26 +21,26 @@ struct NewColony: View {
                         Text("Name:")
                                 .font(.title)
                                 .fontWeight(.semibold)
-                        TextField("Unnamed Colony", text: $newColony.name)
+                        TextField("Unnamed Colony", text: $newTimer.colony.name)
                             .font(.title)
                     }
                     Text("Templates")
                         .font(.title)
                         .fontWeight(.semibold)
                         
-                    TemplateGrid(colony: $newColony, enableNew: false)
+                    TemplateGrid(timer: $newTimer, enableNew: false)
                     //TemplatesGrid()
                     //Spacer()
                 }.padding(.horizontal)
                 Divider()
-                Template(colony: $newColony, width: Double(geo.size.width) * (2.0/3.0), name: $newColony.name)
+                Template(timer: $newTimer, width: Double(geo.size.width) * (2.0/3.0), name: $newTimer.colony.name)
             }
         }
     }
     
     func addColony() {
-        newColony.originalTemplate = template
-        ColonyData.colonies.append(newColony)
+        newTimer.colony.originalTemplate = template
+        ColonyData.colonies.append(newTimer)
         // will add this to a button.
     }
     

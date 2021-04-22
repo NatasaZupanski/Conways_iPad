@@ -11,12 +11,12 @@ import SwiftUI
 struct Conways_iPadApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView(colony: {
-                var colony = ColonyData.colonies[0]
-                colony.setCellAlive(row: 1, col: 1)
-                colony.setCellAlive(row: 2, col: 2)
-                colony.setCellAlive(row: 3, col: 3)
-                return colony
+            ContentView(timer: {
+                var timer = ColonyData.colonies[0]
+                timer.colony.setCellAlive(row: 1, col: 1)
+                timer.colony.setCellAlive(row: 2, col: 2)
+                timer.colony.setCellAlive(row: 3, col: 3)
+                return timer
             }())
             //NewColony()
             /*ColonyView(colony: {

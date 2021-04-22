@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ListView: View {
-    @State private var isTrue = true
-    @State private var speed: Double = 0
-    @State var colony: Colony
+    @State private var isWrap = true
+    @State private var speed: Double = 1
+    @StateObject var timer: ColonyTimer
 //    @State var placeholder = 0
     @State private var isPaused = true
     
@@ -21,35 +21,50 @@ struct ListView: View {
         return Image("Pause button")
     }
     
+    func play(){
+        isPaused.toggle()
+        if !isPaused {
+            timer.startClockTimer(timerSpeed: speed)
+        } else {
+            timer.killClockTimer()
+        }
+    }
+    
+    func wrap() {
+        
+        timer.colony.wrap = true
+    }
+    
     var body: some View {
         VStack() {
-            Toggle(isOn: $isTrue) {
+            Toggle(isOn: $timer.colony.wrap) {
                 Text("Wrap")
+                
             }
             
             HStack {
-                Button(action: {isPaused.toggle()}) {
+                Button(action: {play()}) {
                     buttonImage
                         .resizable()
                         .frame(width: 26.0, height: 30)
                 }
 
-                Text("TIME")
+                Text("\(timer.tickCount)")
                     .font(.largeTitle)
             }
 //            .background(Color.secondary)
                         
             VStack(alignment: .leading){
                 Text("Speed: \(Int(speed))")
-                Slider(value: $speed, in: 0...100.0)
+                Slider(value: $speed, in: 1...100.0)
 
                 Text("Details:")
                     .font(.title2)
                     .bold()
                     .padding(.bottom, -1.0)
-                Text("Name: \(colony.name)")
-                Text("Locked: \(String(colony.locked))")
-                Text("Original Template: \(colony.originalTemplate)")
+                Text("Name: \(timer.colony.name)")
+                Text("Locked: \(String(timer.colony.locked))")
+                Text("Original Template: \(timer.colony.originalTemplate)")
             }
             .padding(.vertical)
             
@@ -58,7 +73,7 @@ struct ListView: View {
                     .font(.title2)
                     .bold()
                 
-                TemplateGrid(colony: .constant(colony), enableNew: true)
+                TemplateGrid(timer: .constant(timer), enableNew: true)
             }
             
             
@@ -72,12 +87,12 @@ struct ListView: View {
 
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
-        ListView(colony: {
-            var colony = ColonyData.colonies[0]
-            colony.setCellAlive(row: 1, col: 1)
-            colony.setCellAlive(row: 2, col: 2)
-            colony.setCellAlive(row: 3, col: 3)
-            return colony
+        ListView(timer: {
+            var timer = ColonyData.colonies[0]
+            timer.colony.setCellAlive(row: 1, col: 1)
+            timer.colony.setCellAlive(row: 2, col: 2)
+            timer.colony.setCellAlive(row: 3, col: 3)
+            return timer
         }())
     }
 }

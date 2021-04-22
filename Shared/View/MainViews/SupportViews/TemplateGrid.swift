@@ -11,19 +11,19 @@ struct TemplateGrid: View {
     var colonyData = ColonyData()
     
     // need to probably make an @EnvironmentObject of templates?
-    @Binding var colony : Colony
+    @Binding var timer : ColonyTimer
     
     var colonyIndex : Int? {
-        return ColonyData.colonies.firstIndex(where: {colony.id == $0 .id})
+        return ColonyData.colonies.firstIndex(where: {timer.id == $0 .id})
     }
     // need to make rework this with @StateObject ColonyData, colony, and colonyIndex
     
     var enableNew : Bool
-    var parsedTemplates : [(Colony, Colony?)] {
+    var parsedTemplates : [(ColonyTimer, ColonyTimer?)] {
         // error here with amount of templates returned
-        var parsed = [(Colony, Colony?)]()
+        var parsed = [(ColonyTimer, ColonyTimer?)]()
         //var count = 0
-        var partial : (Colony, Colony?) = (Colony(size: 60), nil)
+        var partial : (ColonyTimer, ColonyTimer?) = (ColonyTimer(Colony(size: 60)), nil)
         for index in 0..<ColonyData.templates.count {
             if index%2 == 0 {
                 partial.0 = ColonyData.templates[index]
@@ -69,14 +69,14 @@ struct TemplateGrid: View {
             VStack(alignment: .leading) {
                 ForEach(parsedTemplates, id: \.self.0.id) { tuple in
                     HStack(alignment: .center) {
-                        Template(colony: .constant(tuple.0), width: (Double(geometry.size.width) / 2.0), name: .constant(""))
+                        Template(timer: .constant(tuple.0), width: (Double(geometry.size.width) / 2.0), name: .constant(""))
                             .onTapGesture {
-                                setColony(newColony: tuple.0)
+                                setColony(newTimer: tuple.0)
                             }
                         if tuple.1 != nil {
-                            Template(colony: .constant(tuple.1!), width: (Double(geometry.size.width) / 2.0), name: .constant(""))
+                            Template(timer: .constant(tuple.1!), width: (Double(geometry.size.width) / 2.0), name: .constant(""))
                                 .onTapGesture {
-                                    setColony(newColony: tuple.1!)
+                                    setColony(newTimer: tuple.1!)
                                 }
                         }
                         if enableNew && tuple.1 == nil {
@@ -106,16 +106,16 @@ struct TemplateGrid: View {
     }*/
     
     func addTemplate() {
-        ColonyData.templates.append(colony)
+        ColonyData.templates.append(timer)
     }
     
-    func setColony(newColony: Colony) {
+    func setColony(newTimer: ColonyTimer) {
         if enableNew {
-            ColonyData.colonies[colonyIndex!].setColonyFromCoors(cells: newColony.livingCells())
+            ColonyData.colonies[colonyIndex!].colony.setColonyFromCoors(cells: newTimer.colony.livingCells())
             //print("Selected colony updates from Templates")
         } else {
-            colony.originalTemplate = newColony.name
-            colony.setColonyFromCoors(cells: newColony.livingCells())
+            timer.colony.originalTemplate = newTimer.colony.name
+            timer.colony.setColonyFromCoors(cells: newTimer.colony.livingCells())
             //print("Colony being made updated from Templates")
         }
     }
@@ -124,6 +124,6 @@ struct TemplateGrid: View {
 
 struct TemplateGrid_Previews: PreviewProvider {
     static var previews: some View {
-        TemplateGrid(colony: .constant(Colony(size: 60)), enableNew: true)
+        TemplateGrid(timer: .constant(ColonyTimer(Colony(size: 60))), enableNew: true)
     }
 }

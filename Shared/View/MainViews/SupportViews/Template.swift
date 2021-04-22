@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct Template: View {
-    @Binding var colony : Colony
+    @Binding var timer : ColonyTimer
     var cells : [Coordinate] {
-        return colony.livingCells()
+        return timer.colony.livingCells()
     }
     var width : Double
     @Binding var name : String
@@ -24,7 +24,7 @@ struct Template: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(previewing ? name : colony.name)
+            Text(previewing ? name : timer.colony.name)
                 .fontWeight(.medium)
             GeometryReader { geometry in
                 ZStack {
@@ -50,12 +50,12 @@ struct Template: View {
 
 struct Template_Previews: PreviewProvider {
     static var previews: some View {
-        Template(colony: {
-            var colony = ColonyData.colonies[0]
-            colony.setCellAlive(row: 1, col: 1)
-            colony.setCellAlive(row: 2, col: 2)
-            colony.setCellAlive(row: 3, col: 3)
-            return .constant(colony)
+        Template(timer: {
+            var timer = ColonyData.templates[0]
+            timer.colony.setCellAlive(row: 1, col: 1)
+            timer.colony.setCellAlive(row: 2, col: 2)
+            timer.colony.setCellAlive(row: 3, col: 3)
+            return .constant(timer)
         }(), width: 200.0, name: .constant(""))
     }
 }
