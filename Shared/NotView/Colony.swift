@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Colony : CustomStringConvertible , Identifiable {
+struct Colony : CustomStringConvertible , Identifiable {//, ObservableObject {
 //    private (set) var name: String
     //private (set) var generationNumber = 0
     let id = UUID()
@@ -65,6 +65,7 @@ struct Colony : CustomStringConvertible , Identifiable {
     ///   - row: Row of cell to kill
     ///   - col: Column of cell to kill
     mutating func setCellDead(row:Int, col: Int) {
+        print("\(row), \(col) : set Dead")
         aliveCells.remove(Coordinate(row, col))
     }
 
@@ -135,10 +136,11 @@ struct Colony : CustomStringConvertible , Identifiable {
                 default: break;
             }
         }
-        print("it evolved")
-        print(newGen)
-        if wrap {print("With wrap")}
+        //print("it evolved")
+        //print(newGen)
+        //if wrap {print("With wrap")}
         aliveCells = newGen
+        generationNumber += 1
     }
     
     ///Wraps the coordinates for the countNeighbors function as needed

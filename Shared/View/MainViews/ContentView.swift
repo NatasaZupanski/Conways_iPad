@@ -15,7 +15,7 @@ struct ContentView: View {
     
     var body: some View {
         //NavigationView {
-            HStack {
+        HStack(spacing: 0.0) {
                 VStack {
                     Text("Controls")
                         .font(.largeTitle)
@@ -25,7 +25,7 @@ struct ContentView: View {
                 }
                 .frame(minWidth: 0, idealWidth: 75, maxWidth: 300, minHeight: 0, idealHeight: 100, maxHeight: .infinity, alignment: .leading)
                     
-                
+                Divider()
                 
                 VStack {
                     Text("Colony: \(timer.colony.name) | Generation: \(timer.colony.generationNumber)")
@@ -35,7 +35,7 @@ struct ContentView: View {
                     ColonyView()
                 }
             }
-        //}
+        //}.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

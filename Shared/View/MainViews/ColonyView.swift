@@ -10,7 +10,11 @@ import SwiftUI
 struct ColonyView: View {
     @EnvironmentObject var timer : ColonyTimer
     var cells : [Coordinate] {
-        return timer.colony.livingCells()
+        timer.colony.livingCells()
+    }
+    var colonyData = ColonyData()
+    var colonyIndex : Int? {
+        return ColonyData.colonies.firstIndex(where: {timer.id == $0 .id})
     }
     //let name : String
     //var generationNumber : Int
@@ -39,14 +43,17 @@ struct ColonyView: View {
                         .offset(x: CGFloat(Double(cell.col)*Double(geometry.size.height)/(60.0)),
                                 y: CGFloat(Double( cell.row)*Double(geometry.size.height)/(60.0)))
                         .onTapGesture {
-                            timer.colony.setCellDead(row: cell.row, col: cell.col)
+                            //timer.colony.setCellDead(row: cell.row, col: cell.col)
+                            ColonyData.colonies[colonyIndex!].colony.setCellDead(row: cell.row, col: cell.col)
+                            print("tapped")
+                            print(timer.colony.isCellAlive(row: cell.row, col: cell.col))
                         }
                 }
                 //Text("Testing")
             }
-            .navigationBarTitle({
-                return Text(timer.colony.name) + Text("Generation: ") + Text(String(timer.colony.generationNumber))
-            }())
+            /*.navigationBarTitle({
+                return Text(timer.colony.name) + Text(" | Generation: ") + Text(String(timer.colony.generationNumber))
+            }())*/
         }
     }
     

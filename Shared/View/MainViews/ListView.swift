@@ -81,6 +81,7 @@ struct ListView: View {
         }
         .padding(19.0)
         .background(Color(UIColor.lightGray))
+        //.navigationBarTitle(Text("Controls"))
 
     }
 }

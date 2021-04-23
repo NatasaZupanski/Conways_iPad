@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class ColonyTimer: ObservableObject, Identifiable{
+class ColonyTimer: ObservableObject, Identifiable {
     var clockTimer: Timer!
     var timerInterval = 0.1
     @Published var tickCount: Int = 0
