@@ -12,6 +12,7 @@ import SwiftUI
 struct ContentView: View {
 //    @State var colony: Colony
     @EnvironmentObject var timer: ColonyTimer
+    @EnvironmentObject var colonyData : ColonyData
     
     var body: some View {
         //NavigationView {
@@ -32,7 +33,7 @@ struct ContentView: View {
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .padding(.bottom, -3.0)
-                    ColonyView()
+                    ColonyView(colony: colonyData.colonies[colonyData.selectedIndex])
                 }
             }
         //}.navigationViewStyle(StackNavigationViewStyle())
@@ -43,11 +44,12 @@ struct ContentView_Previews: PreviewProvider {
         static var previews: some View {
             ContentView()
                 .environmentObject({ () -> ColonyTimer in 
-                    let timer = ColonyData.colonies[0]
+                    let timer = ColonyData().timers[0]
                     timer.colony.setCellAlive(row: 1, col: 1)
                     timer.colony.setCellAlive(row: 2, col: 2)
                     timer.colony.setCellAlive(row: 3, col: 3)
                     return timer
                 }())
+                .environmentObject(ColonyData())
     }
 }

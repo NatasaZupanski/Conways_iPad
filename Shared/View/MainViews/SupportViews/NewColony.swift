@@ -9,7 +9,8 @@ import SwiftUI
 
 struct NewColony: View {
     //@State var text = " "
-    var colonyData = ColonyData()
+    //var colonyData = ColonyData()
+    @EnvironmentObject var colonyData : ColonyData
     @StateObject var newTimer : ColonyTimer
     @State var template = "Blank"
     
@@ -40,7 +41,7 @@ struct NewColony: View {
     
     func addColony() {
         newTimer.colony.originalTemplate = template
-        ColonyData.colonies.append(newTimer)
+        colonyData.timers.append(newTimer)
         // will add this to a button.
     }
     
@@ -55,5 +56,6 @@ struct NewColony: View {
 struct NewColony_Previews: PreviewProvider {
     static var previews: some View {
         NewColony(newTimer: ColonyTimer(Colony(size: 60)))
+            .environmentObject(ColonyData())
     }
 }

@@ -5,7 +5,40 @@
 //  Created by Clara Dutton on 4/11/21.
 //
 
+//
+//  ColonyData.swift
+//  TestingGitHub (iOS)
+//
+//  Created by Natasa Zupanski on 4/23/21.
+//
+
+
 import Foundation
+
+class ColonyData : ObservableObject {
+    @Published var colonies : [Colony]
+    @Published var templates : [Colony]
+    @Published var selectedIndex : Int
+    
+    @Published var timers : [ColonyTimer]
+    
+    init() {
+        self.colonies = [{
+            var colony = Colony(size: 60)
+            colony.setCellAlive(row: 0, col: 0)
+            colony.setCellAlive(row: 0, col: 1)
+            colony.setCellAlive(row: 0, col: 2)
+            colony.setCellAlive(row: 0, col: 3)
+            return colony
+        }(), Colony(size: 60)]
+        self.templates = [Colony(size: 60), Colony(size: 60), Colony(size: 60), Colony(size: 60)]
+        self.selectedIndex = 0
+        self.timers = [ColonyTimer(Colony(size: 60))]
+    }
+ }
+
+
+/*import Foundation
 
 struct ColonyData {
     static var colonies: [ColonyTimer] = [ColonyTimer(Colony(size: 60, name: "Test", originalTemplate: "Blank"))]
@@ -19,4 +52,4 @@ struct ColonyData {
         t.setCellAlive(row: 1, col: 1)
         return t
     }() ]
-}
+}*/

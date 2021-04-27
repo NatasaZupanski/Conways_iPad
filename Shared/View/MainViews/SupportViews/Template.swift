@@ -51,7 +51,7 @@ struct Template: View {
 struct Template_Previews: PreviewProvider {
     static var previews: some View {
         Template(colony: {
-            var colony = ColonyData.templates[0]
+            var colony = ColonyData().templates[0]
             colony.setCellAlive(row: 1, col: 1)
             colony.setCellAlive(row: 2, col: 2)
             colony.setCellAlive(row: 3, col: 3)

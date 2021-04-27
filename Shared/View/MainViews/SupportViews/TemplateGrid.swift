@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct TemplateGrid: View {
-    var colonyData = ColonyData()
+    //var colonyData = ColonyData()
     
     // need to probably make an @EnvironmentObject of templates?
     @State var timer : ColonyTimer
+    @EnvironmentObject var colonyData : ColonyData
     
     var colonyIndex : Int? {
-        return ColonyData.colonies.firstIndex(where: {timer.id == $0 .id})
+        return colonyData.colonies.firstIndex(where: {timer.id == $0 .id})
     }
     // need to make rework this with @StateObject ColonyData, colony, and colonyIndex
     
@@ -24,17 +25,17 @@ struct TemplateGrid: View {
         var parsed = [(Colony, Colony?)]()
         //var count = 0
         var partial : (Colony, Colony?) = (Colony(size: 60), nil)
-        for index in 0..<ColonyData.templates.count {
+        for index in 0..<colonyData.templates.count {
             if index%2 == 0 {
-                partial.0 = ColonyData.templates[index]
+                partial.0 = colonyData.templates[index]
                 //count += 1
             }
             if index%2 == 1 {
-                partial.1 = ColonyData.templates[index]
+                partial.1 = colonyData.templates[index]
                 //count = 0
                 parsed += [partial]
             }
-            if index == (ColonyData.templates.count - 1) && index%2 == 0 {
+            if index == (colonyData.templates.count - 1) && index%2 == 0 {
                 partial.1 = nil
                 parsed += [partial]
             }
@@ -106,16 +107,19 @@ struct TemplateGrid: View {
     }*/
     
     func addTemplate() {
-        ColonyData.templates.append(timer.colony)
+        colonyData.templates.append(timer.colony)
     }
     
     func setColony(newColony: Colony) {
         if enableNew {
-            ColonyData.colonies[colonyIndex!].colony.setColonyFromCoors(cells: newColony.livingCells())
+            //ColonyData.colonies[colonyIndex!].colony.setColonyFromCoors(cells: newColony.livingCells())
+            //colonyData.colonies[colonyIndex!].colony.aliveCells = newColony.aliveCells
+            colonyData.colonies[colonyData.selectedIndex].aliveCells = timer.colony.aliveCells
             //print("Selected colony updates from Templates")
         } else {
             timer.colony.originalTemplate = newColony.name
-            timer.colony.setColonyFromCoors(cells: newColony.livingCells())
+            //timer.colony.setColonyFromCoors(cells: newColony.livingCells())
+            timer.colony.aliveCells = newColony.aliveCells
             //print("Colony being made updated from Templates")
         }
     }
