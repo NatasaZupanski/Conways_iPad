@@ -19,6 +19,10 @@ class ColonyTimer: ObservableObject, Identifiable {
         colony = c
     }
     
+    func timerSliderChanged(_ speed: Double){
+        startClockTimer(timerSpeed: speed)
+    }
+    
     func getColony() -> Colony{
         return colony
     }
@@ -49,3 +53,4 @@ class ColonyTimer: ObservableObject, Identifiable {
         colony.evolve()
     }
 }
+

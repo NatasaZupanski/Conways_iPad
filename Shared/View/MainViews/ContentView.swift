@@ -15,28 +15,13 @@ struct ContentView: View {
     @EnvironmentObject var colonyData : ColonyData
     
     var body: some View {
-        //NavigationView {
-        HStack(spacing: 0.0) {
-                VStack {
-                    Text("Controls")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .padding(.bottom, -1.0)
-                    TabbedView()
-                }
-                .frame(minWidth: 0, idealWidth: 75, maxWidth: 300, minHeight: 0, idealHeight: 100, maxHeight: .infinity, alignment: .leading)
-                    
-                Divider()
-                
-                VStack {
-                    Text("Colony: \(timer.colony.name) | Generation: \(timer.colony.generationNumber)")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .padding(.bottom, -3.0)
-                    ColonyView(colony: colonyData.colonies[colonyData.selectedIndex])
-                }
-            }
-        //}.navigationViewStyle(StackNavigationViewStyle())
+        NavigationView {
+            TabbedView()
+                .navigationBarTitle("Navigation")
+            ColonyView(colony: colonyData.colonies[colonyData.selectedIndex])
+                .navigationTitle("Colony")
+                .padding(24.0)
+        }
     }
 }
 

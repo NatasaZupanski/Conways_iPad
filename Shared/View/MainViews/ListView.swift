@@ -52,11 +52,11 @@ struct ListView: View {
                 Text("\(timer.tickCount)")
                     .font(.largeTitle)
             }
-//            .background(Color.secondary)
                         
             VStack(alignment: .leading){
                 Text("Speed: \(Int(speed))")
-                Slider(value: $speed, in: 1...100.0)
+                Slider(value: $speed, in: 1...50, step: 1, onEditingChanged: { _ in timer.timerSliderChanged(speed)}
+                )
 
                 Text("Details:")
                     .font(.title2)
@@ -79,10 +79,7 @@ struct ListView: View {
             
             
         }
-        .padding(19.0)
-        .background(Color(UIColor.lightGray))
-        //.navigationBarTitle(Text("Controls"))
-
+        .padding(19.0
     }
 }
 
@@ -96,5 +93,6 @@ struct ListView_Previews: PreviewProvider {
                 timer.colony.setCellAlive(row: 3, col: 3)
                 return timer
             }())
+            .environmentObject(ColonyData())
     }
 }
