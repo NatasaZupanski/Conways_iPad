@@ -15,7 +15,8 @@ struct Conways_iPadApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject({ () -> ColonyTimer in
-                    let timer = colonyData.timers[0]
+                    //let timer = colonyData.timers[0]
+                    let timer = colonyData.timersTwo[0]
                     timer.colony.setCellAlive(row: 1, col: 1)
                     timer.colony.setCellAlive(row: 2, col: 2)
                     timer.colony.setCellAlive(row: 3, col: 3)

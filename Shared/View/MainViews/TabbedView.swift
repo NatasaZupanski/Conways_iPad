@@ -29,7 +29,8 @@ struct TabbedView_Previews: PreviewProvider {
     static var previews: some View {
         TabbedView()
             .environmentObject({ () -> ColonyTimer in
-                let timer = ColonyData().timers[0]
+                //let timer = ColonyData().timers[0]
+                let timer = ColonyData().timersTwo[0]
                 timer.colony.setCellAlive(row: 1, col: 1)
                 timer.colony.setCellAlive(row: 2, col: 2)
                 timer.colony.setCellAlive(row: 3, col: 3)

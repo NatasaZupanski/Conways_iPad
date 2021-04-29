@@ -13,6 +13,7 @@ struct NewColony: View {
     @EnvironmentObject var colonyData : ColonyData
     @StateObject var newTimer : ColonyTimer
     @State var template = "Blank"
+    @State var newColony : Colony
     
     var body: some View {
         GeometryReader { geo in
@@ -29,19 +30,22 @@ struct NewColony: View {
                         .font(.title)
                         .fontWeight(.semibold)
                         
-                    TemplateGrid(timer: newTimer, colony: newTimer.colony, enableNew: false)
+                    TemplateGrid(timer: newTimer, colony: newColony, enableNew: false)
                     //TemplatesGrid()
                     //Spacer()
                 }.padding(.horizontal)
                 Divider()
-                Template(colony: newTimer.colony, width: Double(geo.size.width) * (2.0/3.0), name: $newTimer.colony.name)
+                Template(colony: newColony, width: Double(geo.size.width) * (2.0/3.0), name: $newTimer.colony.name)
             }
         }
     }
     
     func addColony() {
-        newTimer.colony.originalTemplate = template
-        colonyData.timers.append(newTimer)
+        //newTimer.colony.originalTemplate = template
+        //colonyData.timers.append(newTimer)
+        
+        newColony.originalTemplate = template
+        colonyData.colonies.append(newColony)
         // will add this to a button.
     }
     
@@ -55,7 +59,7 @@ struct NewColony: View {
 
 struct NewColony_Previews: PreviewProvider {
     static var previews: some View {
-        NewColony(newTimer: ColonyTimer(Colony(size: 60)))
+        NewColony(newTimer: ColonyTimer(Colony(size: 60)), newColony: Colony(size: 60))
             .environmentObject(ColonyData())
     }
 }
