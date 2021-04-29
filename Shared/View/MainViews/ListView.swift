@@ -13,6 +13,7 @@ struct ListView: View {
     @EnvironmentObject var timer: ColonyTimer
 //    @State var placeholder = 0
     @State private var isPaused = true
+    @EnvironmentObject var colonyData : ColonyData
     
     private var buttonImage: Image {
         if isPaused == true{
@@ -68,18 +69,20 @@ struct ListView: View {
             }
             .padding(.vertical)
             
+            //ScrollView {
             VStack (alignment: .leading){
                 Text("Templates:")
                     .font(.title2)
                     .bold()
                 
-                TemplateGrid(timer: timer, enableNew: true)
+                TemplateGrid(timer: timer, colony: colonyData.colonies[colonyData.selectedIndex], enableNew: true)
             }
+            //}
             
             
             
         }
-        .padding(19.0
+        .padding(19.0)
     }
 }
 

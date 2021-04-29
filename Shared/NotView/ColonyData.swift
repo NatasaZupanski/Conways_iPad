@@ -22,6 +22,24 @@ class ColonyData : ObservableObject {
     
     @Published var timers : [ColonyTimer]
     
+    var timersTwo : [ColonyTimer] {
+        get {
+            var timers = [ColonyTimer]()
+            for colony in colonies {
+                var timer = ColonyTimer(colony)
+                timer.id = colony.id
+                timers.append(timer)
+            }
+            return timers
+        }
+        set (newTimers) {
+            for timer in newTimers {
+                let index = colonies.firstIndex(where: {$0.id == timer.id})
+                self.colonies[index!] = timer.colony
+            }
+        }
+    }
+    
     init() {
         self.colonies = [{
             var colony = Colony(size: 60)

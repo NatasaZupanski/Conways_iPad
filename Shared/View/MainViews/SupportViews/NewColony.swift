@@ -29,7 +29,7 @@ struct NewColony: View {
                         .font(.title)
                         .fontWeight(.semibold)
                         
-                    TemplateGrid(timer: newTimer, enableNew: false)
+                    TemplateGrid(timer: newTimer, colony: newTimer.colony, enableNew: false)
                     //TemplatesGrid()
                     //Spacer()
                 }.padding(.horizontal)

@@ -36,7 +36,7 @@ struct Template: View {
                             .offset(x: CGFloat(Double(cells[index].col)*Double(geometry.size.width)/(60.0)),
                                     y: CGFloat(Double( cells[index].row)*Double(geometry.size.width)/(60.0)))
                     }*/
-                    ForEach(cells) { cell in
+                    ForEach(colony.aliveCells) { cell in
                         CellView(size: (Double(geometry.size.height)/60.0))
                             .offset(x: CGFloat(Double(cell.col)*Double(geometry.size.height)/(60.0)),
                                     y: CGFloat(Double( cell.row)*Double(geometry.size.height)/(60.0)))

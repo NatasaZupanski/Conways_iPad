@@ -13,7 +13,7 @@ class ColonyTimer: ObservableObject, Identifiable {
     var timerInterval = 0.1
     @Published var tickCount: Int = 0
     @Published var colony: Colony
-    let id = UUID()
+    var id = UUID()
     
     init (_ c: Colony){
         colony = c

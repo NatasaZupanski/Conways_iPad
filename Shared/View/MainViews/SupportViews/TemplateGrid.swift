@@ -13,9 +13,10 @@ struct TemplateGrid: View {
     // need to probably make an @EnvironmentObject of templates?
     @State var timer : ColonyTimer
     @EnvironmentObject var colonyData : ColonyData
+    var colony : Colony
     
     var colonyIndex : Int? {
-        return colonyData.colonies.firstIndex(where: {timer.id == $0 .id})
+        return colonyData.colonies.firstIndex(where: {colony.id == $0 .id})
     }
     // need to make rework this with @StateObject ColonyData, colony, and colonyIndex
     
@@ -67,6 +68,7 @@ struct TemplateGrid: View {
     var body: some View {
         
         GeometryReader { geometry in
+            ScrollView {
             VStack(alignment: .leading) {
                 ForEach(parsedTemplates, id: \.self.0.id) { tuple in
                     HStack(alignment: .center) {
@@ -89,7 +91,9 @@ struct TemplateGrid: View {
                             }
                             //Spacer()
                         }
-                    }.frame(height: CGFloat(geometry.size.height/count))
+                    }
+                    .frame(minHeight: CGFloat(Double(geometry.size.width) / 2.0 + 10))
+                    //.frame(height: CGFloat(geometry.size.height/count))
                 }
                 if enableNew && parsedTemplates.last!.1 != nil {
                     Button(action: addTemplate) {
@@ -99,6 +103,7 @@ struct TemplateGrid: View {
                     }
                 }
             }
+            }
         }
     }
     
@@ -107,7 +112,8 @@ struct TemplateGrid: View {
     }*/
     
     func addTemplate() {
-        colonyData.templates.append(timer.colony)
+        //colonyData.templates.append(timer.colony)
+        colonyData.templates.append(colony)
     }
     
     func setColony(newColony: Colony) {
@@ -128,6 +134,6 @@ struct TemplateGrid: View {
 
 struct TemplateGrid_Previews: PreviewProvider {
     static var previews: some View {
-        TemplateGrid(timer: ColonyTimer(Colony(size: 60)), enableNew: true)
+        TemplateGrid(timer: ColonyTimer(Colony(size: 60)), colony: Colony(size: 60), enableNew: true)
     }
 }
