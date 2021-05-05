@@ -7,11 +7,11 @@
 
 // Total bugs:
 //      1. Adding doesn't immediately go back to the colonyView. Hitting cancel afterwards does.
-//      2. Lag; evolving lags the program
-//      3. Error appears in debug w/ wrap: (2021-05-03 10:41:45.084614-0400 Conways_iPad[15677:1552060] invalid mode 'kCFRunLoopCommonModes' provided to CFRunLoopRunSpecific - break on _CFRunLoopError_RunCalledWithInvalidMode to debug. This message will only appear once per execution.)
+//      2. Error appears in debug w/ wrap: (2021-05-03 10:41:45.084614-0400 Conways_iPad[15677:1552060] invalid mode 'kCFRunLoopCommonModes' provided to CFRunLoopRunSpecific - break on _CFRunLoopError_RunCalledWithInvalidMode to debug. This message will only appear once per execution.)
 
 // Fixed:
 //      1. Bottom of TabView cuts out ; changed to PageTabStyle
+//      2. Lag; evolving lags the program
 
 import SwiftUI
 

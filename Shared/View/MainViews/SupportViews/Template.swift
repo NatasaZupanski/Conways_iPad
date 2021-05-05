@@ -10,7 +10,7 @@ import SwiftUI
 struct Template: View {
     var colony : Colony
     var cells : [Coordinate] {
-        return colony.livingCells()
+        return colony.aliveCells
     }
     var width : Double
     @Binding var name : String

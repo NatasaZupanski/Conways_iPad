@@ -121,7 +121,7 @@ struct TemplateGrid: View {
             //ColonyData.colonies[colonyIndex!].colony.setColonyFromCoors(cells: newColony.livingCells())
             //colonyData.colonies[colonyIndex!].colony.aliveCells = newColony.aliveCells
             //colonyData.colonies[colonyData.selectedIndex].aliveCells = timer.colony.aliveCells
-            colonyData.colonies[colonyData.selectedIndex].aliveCells = colony.aliveCells
+            colonyData.colonies[colonyData.selectedIndex].aliveCells = newColony.aliveCells
             //print("Selected colony updates from Templates")
         } else {
             //timer.colony.originalTemplate = newColony.name

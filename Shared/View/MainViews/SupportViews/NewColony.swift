@@ -65,6 +65,7 @@ struct NewColony: View {
         newColony.originalTemplate = template
         colonyData.colonies.append(newColony)
         colonyData.selectedIndex = (colonyData.colonies.count - 1)
+        
         //self.mode.wrappedValue.dismiss()
         //self.added = true
         //self.backToColony = true

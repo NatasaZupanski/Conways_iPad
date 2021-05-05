@@ -126,6 +126,7 @@ struct ColonyView: View {
             /*.onTapGesture {
                 colonyData.colonies[colonyIndex!].setCellAlive(row: 4, col: 4)
             }*/
+            .drawingGroup()
 
         }
         

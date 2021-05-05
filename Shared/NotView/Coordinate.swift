@@ -8,7 +8,7 @@
 import Foundation
 
 struct Coordinate: CustomStringConvertible, Hashable, Identifiable, Codable {
-    var id = UUID()
+    var id: String
     let row: Int
     let col: Int
     var description: String {
@@ -18,6 +18,7 @@ struct Coordinate: CustomStringConvertible, Hashable, Identifiable, Codable {
     init(_ row: Int, _ col: Int) {
         self.row = row
         self.col = col
+        id = "\(row) \(col)"
     }
 
     static func makeCoors(data: [(row: Int, col: Int)]) -> [Coordinate] {
