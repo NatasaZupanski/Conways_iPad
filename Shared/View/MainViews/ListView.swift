@@ -80,7 +80,7 @@ struct ListView: View {
                         
             VStack(alignment: .leading, spacing: 0.0){
                 Text("Speed: \(String(String(speed).prefix(4)))s")
-                Slider(value: $speed, in: 0.5...20, step: 0.01, onEditingChanged: { _ in //timer.timerSliderChanged(speed)
+                Slider(value: $speed, in: 0.5...10, step: 0.25, onEditingChanged: { _ in //timer.timerSliderChanged(speed)
                     if !isPaused {
                         stopTimer()
                         startTimer()
