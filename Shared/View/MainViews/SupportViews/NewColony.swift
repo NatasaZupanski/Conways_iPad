@@ -18,6 +18,9 @@ struct NewColony: View {
     @State var template = "Blank"
     @State var newColony = Colony(size: 60)
     @State var backToColony = false
+    @State var added = false
+    @State var showAdded = false
+    @State var showUpdated = false
     //@State var added = false
     
     var body: some View {
@@ -47,8 +50,29 @@ struct NewColony: View {
             }
             .navigationTitle("New Colony")
             .navigationBarItems(leading: Button(action: cancel) {
-                Text("Cancel")
+                Text(added ? "Done" : "Cancel")
             }, trailing: addButton)
+            .overlay (
+                //if showAdded {
+                Text(showAdded ? "Colony Added. Press Done." : "")
+                    .padding()
+                    .background(showAdded ? Color.white : Color.clear)
+                    .cornerRadius(10)
+                    .shadow(radius: showAdded ? 1.0 : 0.0)
+                    .animation(Animation.easeInOut)
+                //}
+            )
+            .overlay (
+                //if showAdded {
+                Text(showUpdated ? "Colony Updated. Press Done." : "")
+                    .padding()
+                    .background(showUpdated ? Color.white : Color.clear)
+                    .cornerRadius(10)
+                    .shadow(radius: showUpdated ? 1.0 : 0.0)
+                    .animation(Animation.easeInOut)
+                //}
+            )
+
             //.navigationBarItems(trailing: addButton)
         }
     }
@@ -61,10 +85,27 @@ struct NewColony: View {
     func addColony() {
         //newTimer.colony.originalTemplate = template
         //colonyData.timers.append(newTimer)
-        
-        newColony.originalTemplate = template
-        colonyData.colonies.append(newColony)
-        colonyData.selectedIndex = (colonyData.colonies.count - 1)
+        if !added {
+            //newColony = Colony(size: 60)
+            //newColony.originalTemplate = template
+            colonyData.colonies.append(newColony)
+            colonyData.selectedIndex = (colonyData.colonies.count - 1)
+            self.added = true
+            self.showAdded = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.showAdded = false
+            }
+        } else {
+            self.showAdded = false
+            //colonyData.colonies[colonyData.selectedIndex].originalTemplate = template
+            //colonyData.colonies[colonyData.selectedIndex].name = newColony.name
+            colonyData.colonies[colonyData.selectedIndex] = newColony
+            //colonyData.colonies[colonyData.selectedIndex].originalTemplate = template
+            self.showUpdated = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.showUpdated = false
+            }
+        }
         
         //self.mode.wrappedValue.dismiss()
         //self.added = true
@@ -78,12 +119,12 @@ struct NewColony: View {
             /*NavigationLink(destination: ColonyView(colony: colonyData.colonies[colonyData.selectedIndex]), isActive: $backToColony) {
                 Text("")
             }*/
-        NavigationLink(destination: ColonyView(colony: colonyData.colonies[colonyData.selectedIndex])){
+        //NavigationLink(destination: ColonyView(colony: colonyData.colonies[colonyData.selectedIndex])){
             Button(action: addColony) {
-                Text("Add")
+                Text(added ? "Update" : "Add")
                     .foregroundColor(.blue)
             }
-        }
+        //}
         //}
         
     }

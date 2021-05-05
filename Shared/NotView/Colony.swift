@@ -23,7 +23,7 @@ struct Colony : CustomStringConvertible , Identifiable, Codable {//, ObservableO
     var name: String
     var generationNumber = 0
     var locked = false
-    var originalTemplate: String
+    var originalTemplate = "Blank"//: String
 
     ///Length of edge of square colony
     private var size:Int;
@@ -37,7 +37,7 @@ struct Colony : CustomStringConvertible , Identifiable, Codable {//, ObservableO
 
     init(size: Int = 60, name: String = "Unnamed Colony", originalTemplate: String = "Blank") {
         self.size = size;
-        aliveCells = [];
+        self.aliveCells = [];
         self.name = name;
         self.originalTemplate = originalTemplate
     }
@@ -255,8 +255,8 @@ struct Colony : CustomStringConvertible , Identifiable, Codable {//, ObservableO
 
     ///Returns an 'image' of text of what the colony looks like
     var description: String {
-        let aliveIcon:String = "*"
-        let deadIcon:String = " "
+        let aliveIcon : String = "*"
+        let deadIcon : String = " "
 
         var retString = "Generation #\(generationNumber):\n"
         for row in 0..<size {
