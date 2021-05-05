@@ -19,7 +19,7 @@ import Foundation
 struct Colony : CustomStringConvertible , Identifiable, Codable {//, ObservableObject {
 //    private (set) var name: String
     //private (set) var generationNumber = 0
-    let id = UUID()
+    var id = UUID()
     var name: String
     var generationNumber = 0
     var locked = false
