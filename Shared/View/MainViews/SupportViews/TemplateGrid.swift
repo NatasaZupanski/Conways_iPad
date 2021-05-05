@@ -11,9 +11,9 @@ struct TemplateGrid: View {
     //var colonyData = ColonyData()
     
     // need to probably make an @EnvironmentObject of templates?
-    @State var timer : ColonyTimer
+    //@State var timer : ColonyTimer
     @EnvironmentObject var colonyData : ColonyData
-    var colony : Colony
+    @Binding var colony : Colony
     
     var colonyIndex : Int? {
         return colonyData.colonies.firstIndex(where: {colony.id == $0 .id})
@@ -113,20 +113,26 @@ struct TemplateGrid: View {
     
     func addTemplate() {
         //colonyData.templates.append(timer.colony)
-        colonyData.templates.append(colony)
+        colonyData.templates.append(colonyData.colonies[colonyData.selectedIndex])
     }
     
     func setColony(newColony: Colony) {
         if enableNew {
             //ColonyData.colonies[colonyIndex!].colony.setColonyFromCoors(cells: newColony.livingCells())
             //colonyData.colonies[colonyIndex!].colony.aliveCells = newColony.aliveCells
-            colonyData.colonies[colonyData.selectedIndex].aliveCells = timer.colony.aliveCells
+            //colonyData.colonies[colonyData.selectedIndex].aliveCells = timer.colony.aliveCells
+            colonyData.colonies[colonyData.selectedIndex].aliveCells = colony.aliveCells
             //print("Selected colony updates from Templates")
         } else {
-            timer.colony.originalTemplate = newColony.name
+            //timer.colony.originalTemplate = newColony.name
             //timer.colony.setColonyFromCoors(cells: newColony.livingCells())
-            timer.colony.aliveCells = newColony.aliveCells
+            //timer.colony.aliveCells = newColony.aliveCells
             //print("Colony being made updated from Templates")
+            //colonyData.colonies[colonyIndex!].originalTemplate = newColony.name
+            //colonyData.colonies[colonyIndex!].aliveCells = newColony.aliveCells
+            
+            colony.originalTemplate = newColony.name
+            colony.aliveCells = newColony.aliveCells
         }
     }
     
@@ -134,6 +140,6 @@ struct TemplateGrid: View {
 
 struct TemplateGrid_Previews: PreviewProvider {
     static var previews: some View {
-        TemplateGrid(timer: ColonyTimer(Colony(size: 60)), colony: Colony(size: 60), enableNew: true)
+        TemplateGrid(/*timer: ColonyTimer(Colony(size: 60)), */colony: .constant(Colony(size: 60)), enableNew: true)
     }
 }

@@ -28,6 +28,7 @@ struct ColonyView: View {
         GeometryReader { geometry in
             ZStack(alignment: .topLeading) {
                 Rectangle()
+                    //.frame(width: geometry.size.height)
                 //Rectangle()
                     .foregroundColor(.white)
                 ForEach(colony.aliveCells) { cell in
@@ -48,10 +49,15 @@ struct ColonyView: View {
                         }*/
                 
                 }
-            }
+            }//.navigationBackButtonHidden(true)
+            //.frame(width: geometry.size.height)
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(trailing: Button(action: lock) {Image(systemName: colonyData.colonies[colonyData.selectedIndex].locked ? "lock.fill" : "lock.open.fill")})
+            .navigationTitle("\(colonyData.colonies[colonyData.selectedIndex].name) : Genreation #\(colonyData.colonies[colonyData.selectedIndex].generationNumber)")
             .background(Color.white)
             //.coordinateSpace(name: "ColonyView")
             .gesture(DragGesture(minimumDistance: 0.0).onChanged({ value in
+                if !colonyData.colonies[colonyData.selectedIndex].locked {
                 /*if startOfDrag {
                     let startPosition = value.location
                     print(startPosition)
@@ -98,15 +104,20 @@ struct ColonyView: View {
                 
                 let coordinate = positionToCoordinate(height: height, x: value.location.x, y: value.location.y)
                 print(coordinate)
-                if setAlive && (!colonyData.colonies[colonyIndex!].isCellAlive(row: coordinate.row, col: coordinate.col)) {
-                    if colonyData.colonies[colonyIndex!].withinBounds(row: coordinate.row, col: coordinate.col) {
-                    //print(!colonyData.colonies[colonyIndex!].isCellAlive(row: coordinate.row, col: coordinate.col))
-                        colonyData.colonies[colonyIndex!].setCellAlive(row: coordinate.row, col: coordinate.col)
+                if setAlive {
+                    if !colonyData.colonies[colonyIndex!].isCellAlive(row: coordinate.row, col: coordinate.col) {
+                        if colonyData.colonies[colonyIndex!].withinBounds(row: coordinate.row, col: coordinate.col) {
+                            //print(!colonyData.colonies[colonyIndex!].isCellAlive(row: coordinate.row, col: coordinate.col))
+                            colonyData.colonies[colonyIndex!].setCellAlive(row: coordinate.row, col: coordinate.col)
+                        }
                     }
-                } else if colonyData.colonies[colonyIndex!].isCellAlive(row: coordinate.row, col: coordinate.col){
-                    if colonyData.colonies[colonyIndex!].withinBounds(row: coordinate.row, col: coordinate.col) {
-                        colonyData.colonies[colonyIndex!].setCellDead(row: coordinate.row, col: coordinate.col)
+                } else {
+                    if colonyData.colonies[colonyIndex!].isCellAlive(row: coordinate.row, col: coordinate.col) {
+                        if colonyData.colonies[colonyIndex!].withinBounds(row: coordinate.row, col: coordinate.col) {
+                            colonyData.colonies[colonyIndex!].setCellDead(row: coordinate.row, col: coordinate.col)
+                        }
                     }
+                }
                 }
             }).onEnded { value in
                 startOfDrag = true
@@ -115,7 +126,14 @@ struct ColonyView: View {
             /*.onTapGesture {
                 colonyData.colonies[colonyIndex!].setCellAlive(row: 4, col: 4)
             }*/
+
         }
+        
+    }
+    
+    
+    func lock() {
+        colonyData.colonies[colonyData.selectedIndex].locked.toggle()
     }
     
     func positionToCoordinate(height: CGFloat, x: CGFloat, y: CGFloat) -> (row: Int, col: Int) {

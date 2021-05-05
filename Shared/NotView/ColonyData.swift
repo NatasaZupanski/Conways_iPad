@@ -15,12 +15,12 @@
 
 import Foundation
 
-class ColonyData : ObservableObject {
+class ColonyData : ObservableObject {//, Codable {
     @Published var colonies : [Colony]
     @Published var templates : [Colony]
     @Published var selectedIndex : Int
     
-    @Published var timers : [ColonyTimer]
+    /*@Published var timers : [ColonyTimer]
     
     var timersTwo : [ColonyTimer] {
         get {
@@ -38,7 +38,7 @@ class ColonyData : ObservableObject {
                 self.colonies[index!] = timer.colony
             }
         }
-    }
+    }*/
     
     init() {
         self.colonies = [{
@@ -51,7 +51,7 @@ class ColonyData : ObservableObject {
         }(), Colony(size: 60)]
         self.templates = [Colony(size: 60), Colony(size: 60), Colony(size: 60), Colony(size: 60)]
         self.selectedIndex = 0
-        self.timers = [ColonyTimer(Colony(size: 60))]
+        //self.timers = [ColonyTimer(Colony(size: 60))]
     }
  }
 

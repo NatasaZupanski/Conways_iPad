@@ -16,8 +16,7 @@ struct Background: View {
             .foregroundColor(color)
             .foregroundColor(.clear)
             .frame(width: geo.size.width)
-            .frame(minHeight: 20.0)
-            .frame(maxHeight: 30.0)
+            .frame(height: 30)
             .cornerRadius(10.0)
         }
     }

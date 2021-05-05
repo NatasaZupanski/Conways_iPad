@@ -16,7 +16,7 @@
 
 import Foundation
 
-struct Colony : CustomStringConvertible , Identifiable {//, ObservableObject {
+struct Colony : CustomStringConvertible , Identifiable, Codable {//, ObservableObject {
 //    private (set) var name: String
     //private (set) var generationNumber = 0
     let id = UUID()
@@ -53,9 +53,8 @@ struct Colony : CustomStringConvertible , Identifiable {//, ObservableObject {
     func withinBounds(row: Int, col: Int) -> Bool {
         if row >= 0 && row <= 59 && col >= 0 && col <= 59 {
             return true
-        } else {
-            return false
         }
+        return false
     }
 
     ///deletes all alive cells in colony
@@ -146,9 +145,12 @@ struct Colony : CustomStringConvertible , Identifiable {//, ObservableObject {
         
         for i in index{
             if wrap{
-                if aliveCells.contains(Coordinate(wrapCoors(i.r), wrapCoors(i.c))){count += 1}
+                //if aliveCells.contains(Coordinate(wrapCoors(i.r), wrapCoors(i.c))){count += 1}
+                if isCellAlive(row: wrapCoors(i.r), col: wrapCoors(i.c)){count += 1}
+
             } else {
-                if aliveCells.contains(Coordinate(i.r, i.c)){count += 1}
+                //if aliveCells.contains(Coordinate(i.r, i.c)){count += 1}
+                if isCellAlive(row: i.r, col: i.c){count += 1}
             }
         }
         return count
@@ -157,15 +159,19 @@ struct Colony : CustomStringConvertible , Identifiable {//, ObservableObject {
     
     func setHelper(wrap: Bool = false) -> [Coordinate] {
         var result = aliveCells
-        for a in aliveCells{
+        for a in aliveCells {
             let index: [(r: Int, c: Int)] = [(a.row + 1, a.col + 1), (a.row + 1, a.col), (a.row + 1, a.col - 1), (a.row, a.col + 1), (a.row, a.col - 1), (a.row - 1, a.col + 1), (a.row - 1, a.col), (a.row - 1, a.col - 1)]
             for i in index{
                 if wrap{
                     //result.insert(Coordinate(wrapCoors(i.r), wrapCoors(i.c)))
-                    result.append(Coordinate(wrapCoors(i.r), wrapCoors(i.c)))
+                    if !isCellAlive(row: wrapCoors(i.r), col: wrapCoors(i.c)) {
+                        result.append(Coordinate(wrapCoors(i.r), wrapCoors(i.c)))
+                    }
                 } else {
                     //result.insert(Coordinate(i.r, i.c))
-                    result.append(Coordinate(i.r, i.c))
+                    if !isCellAlive(row: i.r, col: i.c) {
+                         result.append(Coordinate(i.r, i.c))
+                    }
                 }
             }
         }
@@ -181,7 +187,10 @@ struct Colony : CustomStringConvertible , Identifiable {//, ObservableObject {
             switch countNeighbors(a.row, a.col, wrap: wrap){
                 case 3: newGen.append(Coordinate(a.row, a.col))
                 case 2:
-                    if aliveCells.contains(Coordinate(a.row, a.col)) {
+                    /*if aliveCells.contains(Coordinate(a.row, a.col)) {
+                        newGen.append(Coordinate(a.row, a.col))
+                    } else { break; }*/
+                    if isCellAlive(row: a.row, col: a.col) {
                         newGen.append(Coordinate(a.row, a.col))
                     } else { break; }
                 default: break;
@@ -190,6 +199,7 @@ struct Colony : CustomStringConvertible , Identifiable {//, ObservableObject {
         //print("it evolved")
         //print(newGen)
         //if wrap {print("With wrap")}
+        newGen = newGen.filter{withinBounds(row: $0.row, col: $0.col)}
         aliveCells = newGen
         generationNumber += 1
     }
@@ -203,7 +213,7 @@ struct Colony : CustomStringConvertible , Identifiable {//, ObservableObject {
         switch c {
             case size: newCoors = 0; break;
             case -1: newCoors = size - 1; break;
-            default: break;
+            default: break
         }
         
         return newCoors
