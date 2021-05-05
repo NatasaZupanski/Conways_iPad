@@ -8,7 +8,7 @@
 import Foundation
 
 struct Coordinate: CustomStringConvertible, Hashable, Identifiable, Codable {
-    let id = UUID()
+    var id = UUID()
     let row: Int
     let col: Int
     var description: String {

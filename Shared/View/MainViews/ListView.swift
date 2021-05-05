@@ -45,11 +45,11 @@ struct ListView: View {
         }
     }
     
-    func wrap() {
+    /*func wrap() {
         
         //timer.colony.wrap = true
         colonyData.colonies[colonyData.selectedIndex].wrap = true
-    }
+    }*/
     
     var body: some View {
         VStack() {
@@ -82,7 +82,10 @@ struct ListView: View {
                 Text("Speed: \(String(String(speed).prefix(4)))s")
                 Slider(value: $speed, in: 0.5...20, step: 0.01, onEditingChanged: { _ in //timer.timerSliderChanged(speed)
                     if !isPaused {
-                        nativeTimer = Timer.publish(every: speed, on: .main, in: .common).autoconnect()
+                        stopTimer()
+                        startTimer()
+                        //nativeTimer = Timer.publish(every: speed, on: .main, in: .common).autoconnect()
+                        
                     }
                     
                 }
