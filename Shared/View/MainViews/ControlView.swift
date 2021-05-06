@@ -22,12 +22,13 @@ struct ControlView: View {
                         ZStack(alignment: .center) {
                     
                             Background(color: Color.gray.opacity(0.45))
+                                //.animation(Animation.easeInOut)
                             //.animation(EaseInOut)
                             Text("\(colony.name)")
                                 //.padding()
                                 .cornerRadius(15.0)
                                 
-                        }
+                        }//.animation(Animation.easeInOut)
                         /*Image(systemName: "chevron.down.circle")
                             .rotationEffect(Angle(degrees: show ? 0 : 90))
                             .foregroundColor(.blue)
@@ -60,7 +61,7 @@ struct ControlView: View {
                         )*/
                         
                         
-                }
+                }//.animation(Animation.easeInOut)
                     //.animation()
             }
         }//.navigationBarItems(leading: EditButton())

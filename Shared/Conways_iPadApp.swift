@@ -52,7 +52,7 @@ struct Conways_iPadApp: App {
                 
                 if let encoded = try? JSONEncoder().encode(colonyData.templates) {
                     let defaults = UserDefaults.standard
-                    defaults.set(encoded, forKey: "templates")
+                    defaults.set(encoded, forKey: "templatesFinal")
                 }
                 
                 if let encoded = try? JSONEncoder().encode(colonyData.selectedIndex) {
@@ -69,7 +69,7 @@ struct Conways_iPadApp: App {
                     colonyData.colonies = loadedColonies
                 }
                 
-                if let savedTemplates = UserDefaults.standard.object(forKey : "templates") as? Data, let loadedTemplates = try? JSONDecoder().decode([Colony].self, from: savedTemplates) {
+                if let savedTemplates = UserDefaults.standard.object(forKey : "templatesFinal") as? Data, let loadedTemplates = try? JSONDecoder().decode([Colony].self, from: savedTemplates) {
                     colonyData.templates = loadedTemplates
                 }
                 
