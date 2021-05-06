@@ -53,7 +53,7 @@ struct ColonyView: View {
             //.frame(width: geometry.size.height)
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(trailing: Button(action: lock) {Image(systemName: colonyData.colonies[colonyData.selectedIndex].locked ? "lock.fill" : "lock.open.fill")})
-            .navigationTitle("\(colonyData.colonies[colonyData.selectedIndex].name) : Genreation #\(colonyData.colonies[colonyData.selectedIndex].generationNumber)")
+            .navigationTitle("\(colonyData.colonies[colonyData.selectedIndex].name) : Generation #\(colonyData.colonies[colonyData.selectedIndex].generationNumber)")
             .background(Color.white)
             //.coordinateSpace(name: "ColonyView")
             .gesture(DragGesture(minimumDistance: 0.0).onChanged({ value in
