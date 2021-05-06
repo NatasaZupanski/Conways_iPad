@@ -32,7 +32,7 @@ struct ContentView: View {
                 //.navigationBarBackButtonHidden(true)
                 //.padding(24.0)
             //}
-        }.accessibilityHint(Text("Swipe left and right to change between the controls and list of colonies."))
+        }//.accessibilityHint(Text("Swipe left and right to change between the controls and list of colonies."))
     }
 }
 
