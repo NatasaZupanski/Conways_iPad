@@ -43,13 +43,22 @@ class ColonyData : ObservableObject {//, Codable {
     init() {
         self.colonies = [{
             var colony = Colony(size: 60)
-            colony.setCellAlive(row: 0, col: 0)
-            colony.setCellAlive(row: 0, col: 1)
-            colony.setCellAlive(row: 0, col: 2)
-            colony.setCellAlive(row: 0, col: 3)
+            colony.name = "First Colony"
             return colony
-        }(), Colony(size: 60)]
-        self.templates = [Colony(size: 60), Colony(size: 60), Colony(size: 60), Colony(size: 60)]
+        }()]
+        self.templates = [{
+            var blank = Colony(size: 60)
+            blank.name = "Blank"
+            return blank
+        }(), {
+            var basic = Colony(size: 60)
+            basic.name = "Basic"
+            basic.setCellAlive(row: 29, col: 29)
+            basic.setCellAlive(row: 29, col: 30)
+            basic.setCellAlive(row: 29, col: 31)
+            basic.setCellAlive(row: 30, col: 30)
+            return basic
+        }()]
         self.selectedIndex = 0
         //self.timers = [ColonyTimer(Colony(size: 60))]
     }
