@@ -47,17 +47,17 @@ struct Conways_iPadApp: App {
             if newScenePhase == .background {
                 if let encoded = try? JSONEncoder().encode(colonyData.colonies) {
                     let defaults = UserDefaults.standard
-                    defaults.set(encoded, forKey: "colonies")
+                    defaults.set(encoded, forKey: "coloniesFinal")
                 }
                 
                 if let encoded = try? JSONEncoder().encode(colonyData.templates) {
                     let defaults = UserDefaults.standard
-                    defaults.set(encoded, forKey: "templatesFinal")
+                    defaults.set(encoded, forKey: "templatesFinal2")
                 }
                 
                 if let encoded = try? JSONEncoder().encode(colonyData.selectedIndex) {
                     let defaults = UserDefaults.standard
-                    defaults.set(encoded, forKey: "selectedIndex")
+                    defaults.set(encoded, forKey: "selectedIndexFinal")
                 }
                 //objectWillChange.send()
                 //profileData.updateToCodables()
@@ -65,15 +65,15 @@ struct Conways_iPadApp: App {
             }
             if newScenePhase == .active {
 
-                if let savedColonies = UserDefaults.standard.object(forKey: "colonies") as? Data, let loadedColonies = try? JSONDecoder().decode([Colony].self, from: savedColonies) {
+                if let savedColonies = UserDefaults.standard.object(forKey: "coloniesFinal") as? Data, let loadedColonies = try? JSONDecoder().decode([Colony].self, from: savedColonies) {
                     colonyData.colonies = loadedColonies
                 }
                 
-                if let savedTemplates = UserDefaults.standard.object(forKey : "templatesFinal") as? Data, let loadedTemplates = try? JSONDecoder().decode([Colony].self, from: savedTemplates) {
+                if let savedTemplates = UserDefaults.standard.object(forKey : "templatesFinal2") as? Data, let loadedTemplates = try? JSONDecoder().decode([Colony].self, from: savedTemplates) {
                     colonyData.templates = loadedTemplates
                 }
                 
-                if let savedIndex = UserDefaults.standard.object(forKey : "selectedIndex") as? Data, let loadedIndex = try? JSONDecoder().decode(Int.self, from: savedIndex) {
+                if let savedIndex = UserDefaults.standard.object(forKey : "selectedIndexFinal") as? Data, let loadedIndex = try? JSONDecoder().decode(Int.self, from: savedIndex) {
                     colonyData.selectedIndex = loadedIndex
                 }
                 /*profileData.updateFromCodables()
